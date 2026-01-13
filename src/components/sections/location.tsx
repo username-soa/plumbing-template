@@ -1,0 +1,106 @@
+import Link from "next/link"
+import Image from "next/image"
+import { MapPin, Clock, Phone } from "lucide-react"
+
+import { Button } from "@/components/ui/button"
+import { Separator } from "@/components/ui/separator"
+import { 
+  TypographyH2, 
+  TypographyH4, 
+  TypographyMuted,
+  TypographySmall 
+} from "@/components/ui/typography"
+import { SITE_CONFIG } from "@/lib/site-config"
+
+export function LocationSection() {
+  return (
+    <section className="w-full py-24 bg-muted/20">
+      <div className="container mx-auto px-6 md:px-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          
+          {/* Left Content */}
+          <div className="flex flex-col gap-8">
+            <div>
+              <div className="flex items-center gap-2 text-primary font-medium mb-4">
+                <Separator className="w-8 bg-primary h-[2px]" />
+                <span className="uppercase tracking-wider text-sm">Location</span>
+              </div>
+              <TypographyH2 className="text-4xl md:text-5xl font-bold border-none tracking-tight mb-6">
+                Find Us
+              </TypographyH2>
+              <TypographyMuted className="text-lg leading-relaxed max-w-lg">
+                Visit us at our conveniently located office, easily accessible from all major routes. Whether you&apos;re coming from downtown or nearby neighborhoods, you&apos;ll find us right in the heart of the city.
+              </TypographyMuted>
+            </div>
+
+            <div className="space-y-6">
+              <div>
+                <TypographyH4 className="text-lg font-bold mb-2">Address</TypographyH4>
+                <div className="flex items-center gap-3 text-muted-foreground">
+                  <MapPin className="w-5 h-5 text-primary" />
+                  <span>{SITE_CONFIG.contact.address}</span>
+                </div>
+                <Separator className="mt-6" />
+              </div>
+
+              <div>
+                <TypographyH4 className="text-lg font-bold mb-2">Opening Hours</TypographyH4>
+                <div className="flex items-center gap-3 text-muted-foreground">
+                   <Clock className="w-5 h-5 text-primary" />
+                   <span>Open: 8am - 6pm (Mon - Sat)</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 mt-4">
+              <Button size="lg" className="px-8 h-14 text-base font-bold shadow-md" asChild>
+                <Link href="/contact">
+                  BOOK APPOINTMENT
+                </Link>
+              </Button>
+              <div className="flex flex-col">
+                 <TypographySmall className="text-[10px] uppercase text-muted-foreground font-bold tracking-wider mb-1">
+                   24/7 Emergency Services
+                 </TypographySmall>
+                 <a href={`tel:${SITE_CONFIG.contact.phone}`} className="text-xl font-bold text-foreground hover:text-primary transition-colors flex items-center gap-2">
+                   {SITE_CONFIG.contact.phone}
+                 </a>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Map Image */}
+          <div className="relative w-full aspect-square md:aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl group cursor-pointer hover:shadow-3xl transition-all duration-500">
+             <a 
+               href="https://www.google.com/maps" 
+               target="_blank" 
+               rel="noopener noreferrer"
+               className="block w-full h-full"
+             >
+              <Image
+                src="/map-styled.png"
+                alt="Office Location Map"
+                fill
+                className="object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+              {/* Animated Pin Overlay */}
+              <div className="absolute top-[40%] left-[55%] -translate-x-1/2 -translate-y-1/2 group-hover:-translate-y-[60%] transition-transform duration-500">
+                 <div className="relative">
+                   <div className="w-12 h-12 bg-primary text-primary-foreground rounded-full flex items-center justify-center shadow-lg animate-bounce">
+                     <MapPin className="w-6 h-6 fill-current" />
+                   </div>
+                   <div className="absolute top-full left-1/2 -translate-x-1/2 w-3 h-1.5 bg-black/20 rounded-[100%] blur-sm mt-1 animate-pulse" />
+                 </div>
+              </div>
+              
+              <div className="absolute bottom-6 right-6 bg-white/90 backdrop-blur text-xs font-bold px-3 py-1.5 rounded-md shadow-sm text-foreground">
+                Click to Navigate
+              </div>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  )
+}
