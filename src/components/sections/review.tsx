@@ -1,117 +1,106 @@
-import * as React from "react"
-import Image from "next/image"
-import { Star } from "lucide-react"
+import * as React from "react";
+import { Star } from "lucide-react";
 
-import { Card, CardContent } from "@/components/ui/card"
+import Marquee from "@/components/ui/marquee";
+import { TypographyH2 } from "@/components/ui/typography";
 import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel"
-import { 
-  TypographyH2, 
-  TypographyH4, 
-  TypographyMuted, 
-  TypographySmall 
-} from "@/components/ui/typography"
-import { fetchGoogleReviews, GOOGLE_RATING, type Review } from "@/lib/google-reviews"
+	fetchGoogleReviews,
+	GOOGLE_RATING,
+	TOTAL_REVIEWS,
+} from "@/lib/google-reviews";
+import { ReviewCard } from "@/components/review-card";
 
 export async function ReviewSection() {
-  const reviews = await fetchGoogleReviews()
+	const reviews = await fetchGoogleReviews();
 
-  return (
-    <section className="w-full py-24 bg-background">
-      <div className="container mx-auto px-6 md:px-12">
-        
-        {/* Header */}
-        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
-          <div className="max-w-2xl">
-            <div className="flex items-center gap-2 text-primary font-medium mb-4">
-              <span className="uppercase tracking-wider text-sm">Testimonials</span>
-            </div>
-            <TypographyH2 className="text-4xl md:text-5xl font-bold border-none tracking-tight">
-              Why People Love Us
-            </TypographyH2>
-          </div>
-          
-          <div className="flex items-center gap-4 bg-card px-6 py-3 rounded-full shadow-sm border">
-            <div className="flex items-center justify-center p-2 bg-white rounded-full shadow-sm w-10 h-10">
-               {/* Google G Logo Placeholder - Simple Text G or SVG */}
-               <span className="font-bold text-xl text-blue-600">G</span>
-            </div>
-            <div>
-              <div className="text-xs text-muted-foreground font-medium uppercase tracking-wide">Google Rating</div>
-              <div className="flex items-center gap-2">
-                <span className="font-bold text-lg text-foreground">{GOOGLE_RATING}</span>
-                <div className="flex gap-0.5">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+	// Split reviews into two rows or just use the same reviews for both
+	const firstRow = reviews.slice(0, Math.ceil(reviews.length / 2));
+	const secondRow = reviews.slice(Math.ceil(reviews.length / 2));
 
-        {/* Reviews Carousel */}
-        <Carousel
-          opts={{
-            align: "start",
-            loop: true,
-          }}
-          className="w-full"
-        >
-          <CarouselContent className="">
-            {reviews.map((review) => (
-              <CarouselItem key={review.id} className="md:basis-1/2 lg:basis-1/3 pl-6">
-                <Card className="border-none shadow-md bg-card/50 h-full p-6">
-                  <CardContent className="p-0 flex flex-col gap-6 h-full justify-between">
-                    <div>
-                      <div className="flex items-center gap-4 mb-6">
-                        <div className="relative w-12 h-12 overflow-hidden rounded-full border-2 border-background shadow-sm shrink-0">
-                          <Image
-                            src={review.authorImage}
-                            alt={review.authorName}
-                            fill
-                            className="object-cover"
-                          />
-                        </div>
-                        <div>
-                          <h4 className="font-bold text-sm uppercase tracking-wide text-foreground">{review.authorName}</h4>
-                          <span className="text-xs text-muted-foreground">{review.relativeTime}</span>
-                        </div>
-                      </div>
-                      
-                      <h3 className="font-bold text-lg mb-3">&quot;{review.title}&quot;</h3>
-                      <p className="text-muted-foreground text-base leading-relaxed line-clamp-4">
-                        {review.text}
-                      </p>
-                    </div>
+	return (
+		<section className="w-full py-24 bg-background overflow-hidden relative">
+			<div className="container mx-auto px-6 md:px-12 mb-12">
+				{/* Header */}
+				<div className="flex flex-col md:flex-row justify-between md:items-end gap-6">
+					<div className="max-w-2xl">
+						<div className="flex items-center gap-2 text-primary font-medium mb-4">
+							<span className="uppercase tracking-wider text-sm">
+								Testimonials
+							</span>
+						</div>
+						<TypographyH2 className="text-4xl md:text-5xl font-bold border-none tracking-tight">
+							Why People Love Us
+						</TypographyH2>
+					</div>
 
-                    <div className="flex gap-0.5 mt-auto pt-4 border-t border-border/50 w-full">
-                       {[...Array(5)].map((_, i) => (
-                        <Star key={i} className={`w-4 h-4 ${i < review.rating ? "fill-yellow-400 text-yellow-400" : "fill-muted text-muted"}`} />
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <div className="flex items-center justify-between mt-8 md:mt-12 px-2">
-            <TypographySmall className="text-muted-foreground">
-              See what our customers are saying
-            </TypographySmall>
-            <div className="flex gap-2">
-              <CarouselPrevious className="static translate-y-0" />
-              <CarouselNext className="static translate-y-0" />
-            </div>
-          </div>
-        </Carousel>
+					<div className="group md:flex hidden items-center gap-3 bg-card/60 dark:bg-card/40 backdrop-blur-md px-4 lg:px-5 py-2.5 rounded-full shadow-lg border border-border/50 hover:border-primary/20 hover:shadow-xl transition-all duration-300">
+						<div className="flex items-center justify-center p-2 bg-white rounded-full shadow-xs w-9 h-9 shrink-0 relative overflow-hidden">
+							<svg viewBox="0 0 24 24" className="w-5 h-5">
+								<title>Google Logo</title>
+								<path
+									d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+									fill="#4285F4"
+								/>
+								<path
+									d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+									fill="#34A853"
+								/>
+								<path
+									d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.21-1.19-.63z"
+									fill="#FBBC05"
+								/>
+								<path
+									d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+									fill="#EA4335"
+								/>
+							</svg>
+						</div>
+						<div className="flex flex-col justify-center gap-0.5">
+							<div className="flex items-center gap-1.5">
+								<span className="font-bold text-lg leading-none text-foreground">
+									{GOOGLE_RATING}
+								</span>
+								<div className="flex lg:hidden gap-0.5 text-yellow-400">
+									<Star className="w-3.5 h-3.5 fill-current" />
+								</div>
+								<div className="lg:flex hidden gap-0.5 text-yellow-400">
+									{[1, 2, 3, 4, 5].map((star) => (
+										<Star key={star} className="w-3.5 h-3.5 fill-current" />
+									))}
+								</div>
+							</div>
+							<div className="text-[10px] uppercase font-bold tracking-widest text-muted-foreground/80 lg:flex hidden">
+								Based on {TOTAL_REVIEWS} reviews
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 
-      </div>
-    </section>
-  )
+			<div className="relative flex w-full flex-col items-center justify-center gap-6 overflow-hidden">
+				<Marquee pauseOnHover className="[--duration:40s] [--gap:1.5rem]">
+					{firstRow.map((review) => (
+						<div key={review.id} className="w-[300px] md:w-[400px]">
+							<ReviewCard review={review} />
+						</div>
+					))}
+				</Marquee>
+
+				<Marquee
+					reverse
+					pauseOnHover
+					className="[--duration:40s] [--gap:1.5rem]"
+				>
+					{secondRow.map((review) => (
+						<div key={review.id} className="w-[350px] md:w-[450px]">
+							<ReviewCard review={review} />
+						</div>
+					))}
+				</Marquee>
+
+				<div className="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-white dark:from-background"></div>
+				<div className="pointer-events-none absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-white dark:from-background"></div>
+			</div>
+		</section>
+	);
 }
