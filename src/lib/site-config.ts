@@ -28,6 +28,58 @@ export const SITE_CONFIG = {
 				"Lowers unexplained high water bills",
 				"Pinpoint accuracy for minimal repair intrusion",
 			],
+			subServices: [
+				{
+					title: "Acoustic Leak Detection",
+					description:
+						"Using advanced sound equipment to locate leaks by detecting the noise of escaping water.",
+					icon: "Ear",
+				},
+				{
+					title: "Thermal Imaging",
+					description:
+						"Infrared cameras reveal temperature differences caused by hidden moisture.",
+					icon: "Thermometer",
+				},
+				{
+					title: "Video Pipe Inspection",
+					description:
+						"Fiber-optic cameras inspect inside pipes to find cracks and damage.",
+					icon: "Video",
+				},
+				{
+					title: "Slab Leak Detection",
+					description:
+						"Specialized equipment to find leaks under concrete foundations.",
+					icon: "Layers",
+				},
+			],
+			stats: [
+				{ value: "500+", label: "Leaks Found This Year" },
+				{ value: "98%", label: "Detection Accuracy" },
+				{ value: "2hr", label: "Average Response Time" },
+				{ value: "$5K+", label: "Avg. Customer Savings" },
+			],
+			process: [
+				{
+					title: "Initial Assessment",
+					description:
+						"We discuss your concerns and review your water bills for anomalies.",
+					icon: "ClipboardList",
+				},
+				{
+					title: "Technology Scan",
+					description:
+						"Using acoustic and thermal tools, we scan your property for hidden leaks.",
+					icon: "Scan",
+				},
+				{
+					title: "Pinpoint & Report",
+					description:
+						"We mark the exact leak location and provide a detailed repair plan.",
+					icon: "MapPin",
+				},
+			],
 			faqs: [
 				{
 					question: "How do you find hidden leaks?",
@@ -57,6 +109,26 @@ export const SITE_CONFIG = {
 				"Same-day emergency replacement",
 				"Expertise in all major brands",
 				"Extended warranty options available",
+			],
+			process: [
+				{
+					title: "Consultation",
+					description:
+						"We verify your needs and help you choose the right unit.",
+					icon: "ClipboardList",
+				},
+				{
+					title: "Installation",
+					description:
+						"Professional removal of old unit and safe installation of the new one.",
+					icon: "Wrench",
+				},
+				{
+					title: "Testing",
+					description:
+						"We verify hot water flow and safety controls before leaving.",
+					icon: "CheckCircle",
+				},
 			],
 			faqs: [
 				{
@@ -88,6 +160,25 @@ export const SITE_CONFIG = {
 				"Video camera inspection included",
 				"Preventative maintenance plans",
 			],
+			process: [
+				{
+					title: "Inspection",
+					description:
+						"Camera inspection to locate the blockage and check pipe condition.",
+					icon: "Scan",
+				},
+				{
+					title: "Hydro-Jetting",
+					description:
+						"High-pressure water streams clear roots and grease buildup.",
+					icon: "Droplets",
+				},
+				{
+					title: "Verification",
+					description: "Final camera pass to ensure the line is 100% clear.",
+					icon: "CheckCircle",
+				},
+			],
 			faqs: [
 				{
 					question: "Is hydro-jetting safe for my pipes?",
@@ -117,6 +208,25 @@ export const SITE_CONFIG = {
 				"Fixes low water pressure",
 				"Lead pipe replacement",
 				"Quiet, durable PEX options",
+			],
+			process: [
+				{
+					title: "Assessment",
+					description:
+						"We identify leak sources and evaluate pipe material condition.",
+					icon: "Search",
+				},
+				{
+					title: "Repair/Replace",
+					description:
+						"Precision repair or complete section replacement as needed.",
+					icon: "Wrench",
+				},
+				{
+					title: "Pressure Test",
+					description: "System testing to guarantee leak-free performance.",
+					icon: "Gauge",
+				},
 			],
 			faqs: [
 				{
@@ -148,6 +258,26 @@ export const SITE_CONFIG = {
 				"Fully stocked trucks",
 				"No overtime charges for nights/weekends",
 			],
+			process: [
+				{
+					title: "Rapid Dispatch",
+					description:
+						"Our nearest available unit is routed to you immediately.",
+					icon: "Siren",
+				},
+				{
+					title: "Immediate Action",
+					description:
+						"We quickly isolate the issue to stop damage and restore safety.",
+					icon: "Zap",
+				},
+				{
+					title: "Follow-Up",
+					description:
+						"Permanent repair options provided once the emergency is stabilized.",
+					icon: "ClipboardCheck",
+				},
+			],
 			faqs: [
 				{
 					question: "What is considered a plumbing emergency?",
@@ -177,6 +307,26 @@ export const SITE_CONFIG = {
 				"Custom shower systems",
 				"Code-compliant re-routing",
 				"Accessibility upgrades (ADA)",
+			],
+			process: [
+				{
+					title: "Design Consult",
+					description:
+						"We work with you to plan the perfect layout and fixture selection.",
+					icon: "PencilRuler",
+				},
+				{
+					title: "Rough-In",
+					description:
+						"Routing all new water and drain lines to the correct locations.",
+					icon: "Hammer",
+				},
+				{
+					title: "Finish",
+					description:
+						"Installing fixtures and testing for a perfect, polised look.",
+					icon: "Sparkles",
+				},
 			],
 			faqs: [
 				{
@@ -208,6 +358,25 @@ export const SITE_CONFIG = {
 				"Prevents sewage backups",
 				"Long-lasting pipe relining",
 			],
+			process: [
+				{
+					title: "Camera Inspect",
+					description:
+						"We visualize the damage to choose the best repair method.",
+					icon: "Video",
+				},
+				{
+					title: "Trenchless Fix",
+					description: "Relining or bursting pipe with minimal to no digging.",
+					icon: "ArrowRightLeft",
+				},
+				{
+					title: "Final Check",
+					description:
+						"Ensuring proper flow and grade with a post-work inspection.",
+					icon: "CheckCircle",
+				},
+			],
 			faqs: [
 				{
 					question: "How do I know if my sewer line is broken?",
@@ -237,6 +406,25 @@ export const SITE_CONFIG = {
 				"Healthier drinking water",
 				"Softer skin and hair",
 				"Remove chlorine taste/odor",
+			],
+			process: [
+				{
+					title: "Water Testing",
+					description:
+						"We analyze your water's hardness and contaminant levels.",
+					icon: "Beaker",
+				},
+				{
+					title: "System Select",
+					description:
+						"Recommending the best filter or softener for your specific water.",
+					icon: "Filter",
+				},
+				{
+					title: "Installation",
+					description: "Clean integration with your main water line.",
+					icon: "Wrench",
+				},
 			],
 			faqs: [
 				{
@@ -268,6 +456,25 @@ export const SITE_CONFIG = {
 				"Outdoor grill hookups",
 				"Permitting included",
 			],
+			process: [
+				{
+					title: "Safety Check",
+					description:
+						"Shutting off gas and verifying the system before starting.",
+					icon: "ShieldCheck",
+				},
+				{
+					title: "Installation",
+					description:
+						"Running new lines using appropriately integrated materials.",
+					icon: "Construction",
+				},
+				{
+					title: "Leak Testing",
+					description: "Rigorous pressure testing to ensure 100% safety.",
+					icon: "Gauge",
+				},
+			],
 			faqs: [
 				{
 					question: "Can plumbers work on gas lines?",
@@ -298,6 +505,26 @@ export const SITE_CONFIG = {
 				"Backflow certification",
 				"Grease trap maintenance",
 			],
+			process: [
+				{
+					title: "Site Survey",
+					description:
+						"Understanding your facility's layout and specific requirements.",
+					icon: "Map",
+				},
+				{
+					title: "Scheduled Work",
+					description:
+						"Executing repairs during off-hours to minimize disruption.",
+					icon: "Clock",
+				},
+				{
+					title: "Compliance",
+					description:
+						"Providing all necessary documentation and certifications.",
+					icon: "FileCheck",
+				},
+			],
 			faqs: [
 				{
 					question: "Do you offer maintenance contracts?",
@@ -327,6 +554,24 @@ export const SITE_CONFIG = {
 				"Clog removal",
 				"Water-saving upgrades",
 			],
+			process: [
+				{
+					title: "Diagnosis",
+					description:
+						"Identifying if it's a fill valve, flapper, or clog issue.",
+					icon: "Stethoscope",
+				},
+				{
+					title: "Repair/Replace",
+					description: "Fixing the specific part or installing a new unit.",
+					icon: "Wrench",
+				},
+				{
+					title: "Flow Test",
+					description: "Verifying powerful flush and proper tank refill.",
+					icon: "Droplet",
+				},
+			],
 			faqs: [
 				{
 					question: "Why is my toilet running?",
@@ -355,6 +600,24 @@ export const SITE_CONFIG = {
 				"Faucet upgrades",
 				"Ice maker lines",
 				"Dishwasher installation",
+			],
+			process: [
+				{
+					title: "Assessment",
+					description:
+						"Checking under-sink connection points and supply lines.",
+					icon: "Eye",
+				},
+				{
+					title: "Installation",
+					description: "Connecting your new fixture or appliance securely.",
+					icon: "Wrench",
+				},
+				{
+					title: "Quality Check",
+					description: "Ensuring zero leaks and smooth operation.",
+					icon: "ThumbsUp",
+				},
 			],
 			faqs: [
 				{

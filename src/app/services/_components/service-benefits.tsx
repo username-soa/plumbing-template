@@ -20,9 +20,9 @@ export function ServiceBenefits({ benefits }: ServiceBenefitsProps) {
 				</div>
 
 				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-					{benefits.map((benefit, index) => (
+					{benefits.map((benefit) => (
 						<div
-							key={index}
+							key={benefit}
 							className="flex flex-col items-center text-center p-6 rounded-2xl bg-muted/20 border border-border/50 hover:bg-muted/40 transition-colors"
 						>
 							<div className="w-12 h-12 rounded-full bg-green-500/10 flex items-center justify-center text-green-600 mb-4">

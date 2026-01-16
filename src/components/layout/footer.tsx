@@ -32,10 +32,10 @@ export function Footer() {
 			<div className="container mx-auto px-6 md:px-12 relative z-10">
 				{/* Integrated CTA Section */}
 				<div className="flex flex-col items-center justify-between gap-8 text-center md:text-left mb-16">
-					<TypographyH2 className="text-4xl md:text-5xl font-bold border-none tracking-tight">
+					<TypographyH2 className="text-4xl md:text-5xl font-bold border-none tracking-tight text-center">
 						Join Thousands of Happy Clients and Book Today
 					</TypographyH2>
-					<p className="text-muted-foreground text-lg md:text-xl font-light">
+					<p className="text-muted-foreground text-lg md:text-xl font-light text-center">
 						Reliable, efficient, and professional plumbing services are just a
 						click away.
 					</p>

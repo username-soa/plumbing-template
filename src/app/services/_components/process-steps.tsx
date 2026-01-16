@@ -1,32 +1,54 @@
 "use client";
 
-import { useRef, useState } from "react";
-import { ArrowRight, Calendar, Search, Wrench, LucideIcon } from "lucide-react";
+import * as Icons from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { SITE_CONFIG } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
 
-const ICONS: Record<string, LucideIcon> = {
-	Calendar,
-	Search,
-	Wrench,
-};
+interface ProcessStep {
+	title: string;
+	description: string;
+	icon: string;
+}
 
-export function ProcessSteps() {
+interface ProcessStepsProps {
+	steps?: ProcessStep[];
+}
+
+export function ProcessSteps({ steps }: ProcessStepsProps) {
+	// Use provided steps or fall back to global config
+	const processSteps = steps && steps.length > 0 ? steps : SITE_CONFIG.process;
+
+	if (!processSteps || processSteps.length === 0) return null;
+
 	return (
-		<section className="py-24 bg-background">
+		<section className="py-16 md:py-20 bg-background">
 			<div className="container mx-auto px-6">
 				<div className="text-center max-w-2xl mx-auto mb-16">
-					<h2 className="text-4xl font-bold tracking-tight mb-4">
+					<span className="text-primary font-semibold text-sm uppercase tracking-wider">
+						Our Process
+					</span>
+					<h2 className="text-3xl md:text-4xl font-bold tracking-tight mt-2 mb-4">
 						How It Works
 					</h2>
 					<p className="text-muted-foreground text-lg">
-						Simple, transparent, and stress-free service in 3 easy steps.
+						Simple, transparent, and stress-free service in{" "}
+						{processSteps.length} easy steps.
 					</p>
 				</div>
 
-				<div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-					{SITE_CONFIG.process?.map((step, index) => {
-						const Icon = ICONS[step.icon] || Wrench;
+				<div
+					className={cn(
+						"grid gap-6",
+						processSteps.length === 3
+							? "grid-cols-1 md:grid-cols-3"
+							: "grid-cols-1 md:grid-cols-2 lg:grid-cols-4",
+					)}
+				>
+					{processSteps.map((step, index) => {
+						const Icon =
+							(Icons as unknown as Record<string, LucideIcon>)[step.icon] ||
+							Icons.Wrench;
 						return (
 							<SpotlightCard key={step.title} className="h-full">
 								<div className="relative z-20 flex flex-col items-start text-start h-full p-8">
@@ -60,70 +82,13 @@ function SpotlightCard({
 	children: React.ReactNode;
 	className?: string;
 }) {
-	const divRef = useRef<HTMLDivElement>(null);
-	const [isFocused, setIsFocused] = useState(false);
-	const [position, setPosition] = useState({ x: 0, y: 0 });
-	const [opacity, setOpacity] = useState(0);
-
-	const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-		if (!divRef.current) return;
-
-		const div = divRef.current;
-		const rect = div.getBoundingClientRect();
-
-		setPosition({ x: e.clientX - rect.left, y: e.clientY - rect.top });
-	};
-
-	const handleFocus = () => {
-		setIsFocused(true);
-		setOpacity(1);
-	};
-
-	const handleBlur = () => {
-		setIsFocused(false);
-		setOpacity(0);
-	};
-
-	const handleMouseEnter = () => {
-		setOpacity(1);
-	};
-
-	const handleMouseLeave = () => {
-		setOpacity(0);
-	};
-
 	return (
 		<div
-			ref={divRef}
-			onMouseMove={handleMouseMove}
-			onFocus={handleFocus}
-			onBlur={handleBlur}
-			onMouseEnter={handleMouseEnter}
-			onMouseLeave={handleMouseLeave}
 			className={cn(
 				"relative rounded-3xl border border-border bg-card overflow-hidden transition-all duration-200",
 				className,
 			)}
 		>
-			<div
-				className="pointer-events-none absolute -inset-px opacity-0 transition-opacity duration-300"
-				style={{
-					opacity,
-					background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, rgba(var(--primary-rgb), 0.15), transparent 40%)`,
-				}}
-			/>
-			{/* Border Highlight Effect */}
-			<div
-				className="pointer-events-none absolute -inset-px rounded-3xl opacity-0 transition-opacity duration-300"
-				style={{
-					opacity,
-					background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, hsl(var(--primary)), transparent 40%)`,
-					maskImage: `radial-gradient(200px circle at ${position.x}px ${position.y}px, black, transparent)`,
-					WebkitMaskImage: `radial-gradient(200px circle at ${position.x}px ${position.y}px, black, transparent)`,
-				}}
-			/>
-
-			{/* Content Container (to sit on top of the bg effect) */}
 			<div className="relative">{children}</div>
 		</div>
 	);

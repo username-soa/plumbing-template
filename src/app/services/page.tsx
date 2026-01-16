@@ -50,14 +50,10 @@ export default function ServicesPage() {
 			<JsonLd data={jsonLd} />
 
 			<ServicesHeroMain />
-
 			<ServicesGrid />
-
 			<ProcessSteps />
-
-			<FAQSection />
-
 			<ReviewSection />
+			<FAQSection />
 		</>
 	);
 }

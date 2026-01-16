@@ -1,19 +1,17 @@
 import { notFound } from "next/navigation";
-import { Metadata } from "next";
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import type { Metadata } from "next";
 import * as Icons from "lucide-react";
 
 import { SITE_CONFIG } from "@/lib/site-config";
-import { Button } from "@/components/ui/button";
 import { ServiceHero } from "../_components/service-hero";
-import { ServiceBenefits } from "../_components/service-benefits";
+import { ServiceDetails } from "../_components/service-details";
+import { WhyChooseUs } from "../_components/why-choose-us";
+import { ProcessSteps } from "../_components/process-steps";
+import { QuoteFormCTA } from "../_components/quote-form";
 import { ServiceFAQ } from "../_components/service-faq";
 import { RelatedServices } from "../_components/related-services";
-import { Breadcrumbs } from "../_components/breadcrumbs";
-import { ProcessSteps } from "../_components/process-steps";
-import { TrustIndicators } from "../_components/trust-indicators";
 import { ReviewSection } from "@/components/sections/review";
+import { JsonLd } from "@/components/json-ld";
 
 interface ServicePageProps {
 	params: Promise<{
@@ -21,7 +19,21 @@ interface ServicePageProps {
 	}>;
 }
 
-import { JsonLd } from "@/components/json-ld";
+// Extended service type for TypeScript
+interface ExtendedService {
+	title: string;
+	slug: string;
+	description: string;
+	longDescription?: string;
+	icon: string;
+	metaTitle?: string;
+	metaDescription?: string;
+	benefits?: string[];
+	faqs?: { question: string; answer: string }[];
+	subServices?: { title: string; description: string; icon: string }[];
+	stats?: { value: string; label: string }[];
+	process?: { title: string; description: string; icon: string }[];
+}
 
 // 1. Generate Static Params for all services
 export async function generateStaticParams() {
@@ -52,15 +64,18 @@ export async function generateMetadata({
 // 3. Main Page Component
 export default async function ServicePage({ params }: ServicePageProps) {
 	const { slug } = await params;
-	const service = SITE_CONFIG.services.find((s) => s.slug === slug);
+	const service = SITE_CONFIG.services.find((s) => s.slug === slug) as
+		| ExtendedService
+		| undefined;
 
 	if (!service) {
 		notFound();
 	}
 
 	// Dynamic Icon
-	// @ts-ignore
-	const Icon = Icons[service.icon as keyof typeof Icons] || Icons.Wrench;
+	const Icon =
+		(Icons as unknown as Record<string, typeof Icons.Wrench>)[service.icon] ||
+		Icons.Wrench;
 
 	const jsonLd = {
 		"@context": "https://schema.org",
@@ -90,67 +105,40 @@ export default async function ServicePage({ params }: ServicePageProps) {
 		<>
 			<JsonLd data={jsonLd} />
 
-			<Breadcrumbs
-				items={[
+			<ServiceHero
+				title={service.title}
+				description={service.longDescription || service.description}
+				icon={Icon}
+				breadcrumbItems={[
 					{ label: "Services", href: "/services" },
 					{ label: service.title },
 				]}
 			/>
 
-			<ServiceHero
+			{/* Service Details with Sub-services (SEO-rich content) */}
+			<ServiceDetails
 				title={service.title}
-				description={service.longDescription || service.description}
-				icon={Icon}
+				longDescription={service.longDescription || service.description}
+				subServices={service.subServices}
+				process={service.process}
 			/>
 
-			{/* How It Works - Process Steps */}
+			{/* Why Choose Us + Stats */}
+			<WhyChooseUs stats={service.stats} />
+
+			{/* How It Works - Dynamic or Global Process */}
 			<ProcessSteps />
 
-			<ServiceBenefits benefits={service.benefits || []} />
+			{/* Quote Form CTA */}
+			<QuoteFormCTA serviceName={service.title} />
 
 			{/* Reviews Section */}
-			<div className="bg-muted/10 py-12">
-				<ReviewSection />
-			</div>
+			<ReviewSection />
 
-			{/* Trust Indicators */}
-			<TrustIndicators />
-
-			{/* CTA Section */}
-			<section className="py-20 bg-primary text-primary-foreground">
-				<div className="container mx-auto px-6 text-center">
-					<h2 className="text-3xl md:text-4xl font-bold mb-6">
-						Need {service.title}? we're here to help.
-					</h2>
-					<p className="text-primary-foreground/90 text-lg max-w-2xl mx-auto mb-10">
-						Professional, licensed, and insured plumbers ready to solve your
-						problem today.
-					</p>
-					<div className="flex flex-col sm:flex-row gap-4 justify-center">
-						<Button
-							size="lg"
-							variant="secondary"
-							className="rounded-full px-8 font-bold"
-							asChild
-						>
-							<Link href="/contact">Schedule Appointment</Link>
-						</Button>
-						<Button
-							size="lg"
-							variant="outline"
-							className="rounded-full px-8 bg-transparent text-primary-foreground border-primary-foreground hover:bg-primary-foreground/10"
-							asChild
-						>
-							<a href={`tel:${SITE_CONFIG.contact.phone}`}>
-								Call {SITE_CONFIG.contact.phone}
-							</a>
-						</Button>
-					</div>
-				</div>
-			</section>
-
+			{/* Service-specific FAQs */}
 			<ServiceFAQ faqs={service.faqs || []} />
 
+			{/* Related Services */}
 			<RelatedServices currentSlug={service.slug || ""} />
 		</>
 	);

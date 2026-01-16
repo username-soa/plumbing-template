@@ -37,15 +37,17 @@ export function ServiceFAQ({ faqs }: ServiceFAQProps) {
 			<JsonLd data={jsonLd} />
 			<div className="container mx-auto px-6 max-w-3xl">
 				<div className="text-center mb-12">
-					<TypographyH2>Common Questions</TypographyH2>
-					<TypographyMuted>
+					<TypographyH2 className="md:text-5xl text-4xl text-center font-bold mb-4">
+						Common Questions
+					</TypographyH2>
+					<TypographyMuted className="text-base text-center">
 						Answers to frequently asked questions about this service.
 					</TypographyMuted>
 				</div>
 
 				<Accordion type="single" collapsible className="w-full">
-					{faqs.map((faq, index) => (
-						<AccordionItem key={index} value={`item-${index}`}>
+					{faqs.map((faq) => (
+						<AccordionItem key={faq.question} value={faq.question}>
 							<AccordionTrigger className="text-left font-semibold text-lg">
 								{faq.question}
 							</AccordionTrigger>

@@ -29,8 +29,8 @@ export function TrustIndicators() {
 		<section className="py-16 bg-muted/20">
 			<div className="container mx-auto px-6">
 				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-					{TRUST_FACTORS.map((factor, index) => (
-						<div key={index} className="flex gap-4 items-start">
+					{TRUST_FACTORS.map((factor) => (
+						<div key={factor.title} className="flex gap-4 items-start">
 							<div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 text-primary">
 								<factor.icon className="w-6 h-6" />
 							</div>

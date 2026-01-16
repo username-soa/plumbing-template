@@ -1,21 +1,30 @@
 import { LucideIcon } from "lucide-react";
 import { TypographyH1, TypographyLead } from "@/components/ui/typography";
 import { Badge } from "@/components/ui/badge";
+import { Breadcrumbs } from "./breadcrumbs";
 
 interface ServiceHeroProps {
 	title: string;
 	description: string;
 	icon: LucideIcon;
+	breadcrumbItems?: { label: string; href?: string }[];
 }
 
 export function ServiceHero({
 	title,
 	description,
 	icon: Icon,
+	breadcrumbItems,
 }: ServiceHeroProps) {
 	return (
-		<section className="relative w-full py-20 md:py-28 bg-muted/30 overflow-hidden border-b border-border/50">
+		<section className="relative w-full md:min-h-[70vh] min-h-[60vh] py-20 md:py-28 bg-muted/30 overflow-hidden border-b border-border/50 flex items-center">
 			<div className="container mx-auto px-6 relative z-10">
+				{breadcrumbItems && (
+					<div className="mb-8">
+						<Breadcrumbs items={breadcrumbItems} variant="minimal" />
+					</div>
+				)}
+
 				<div className="flex flex-col md:flex-row items-center gap-10">
 					<div className="flex-1 max-w-2xl">
 						<Badge
