@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import * as Icons from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { SITE_CONFIG } from "@/lib/site-config";
@@ -17,6 +18,7 @@ interface ServiceDetailsProps {
 	longDescription: string;
 	subServices?: SubService[];
 	process?: { title: string; description: string; icon: string }[];
+	image?: string;
 }
 
 export function ServiceDetails({
@@ -24,6 +26,7 @@ export function ServiceDetails({
 	longDescription,
 	subServices,
 	process,
+	image,
 }: ServiceDetailsProps) {
 	return (
 		<section className="py-16 md:py-24 bg-background">
@@ -81,7 +84,7 @@ export function ServiceDetails({
 
 						{/* Service Process Steps */}
 						{process && process.length > 0 && (
-							<div className="pt-8 mt-8">
+							<div className="pt-4 mt-4">
 								<span className="text-primary font-semibold text-sm uppercase tracking-wider block mb-4">
 									Service Workflow
 								</span>
@@ -114,48 +117,61 @@ export function ServiceDetails({
 						)}
 					</div>
 
-					{/* Right: Sub-services Grid */}
-					{subServices && subServices.length > 0 && (
-						<div className="space-y-6">
-							<div>
-								<span className="text-primary font-semibold text-sm uppercase tracking-wider">
-									What's Included
-								</span>
-								<h3 className="text-2xl font-bold mt-2">
-									Our {title} Services
-								</h3>
+					{/* Right: Image and Sub-services Grid */}
+					<div className="space-y-8">
+						{image && (
+							<div className="relative h-full md:w-[80%] w-full max-md:aspect-square mx-auto overflow-hidden rounded-2xl shadow-xl">
+								<Image
+									src={image}
+									alt={`${title} service`}
+									fill
+									className="object-cover hover:scale-105 transition-transform duration-700"
+								/>
 							</div>
+						)}
 
-							<div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-								{subServices.map((subService) => {
-									const Icon =
-										(Icons as unknown as Record<string, LucideIcon>)[
-											subService.icon
-										] || Icons.Wrench;
-									return (
-										<div
-											key={subService.title}
-											className={cn(
-												"group p-5 rounded-2xl border border-border bg-card",
-												"hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5",
-												"transition-all duration-300",
-											)}
-										>
-											<div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-4 group-hover:scale-110 transition-transform">
-												<Icon className="w-6 h-6" />
+						{subServices && subServices.length > 0 && (
+							<div className="space-y-6">
+								<div>
+									<span className="text-primary font-semibold text-sm uppercase tracking-wider">
+										What's Included
+									</span>
+									<h3 className="text-2xl font-bold mt-2">
+										Our {title} Services
+									</h3>
+								</div>
+
+								<div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+									{subServices.map((subService) => {
+										const Icon =
+											(Icons as unknown as Record<string, LucideIcon>)[
+												subService.icon
+											] || Icons.Wrench;
+										return (
+											<div
+												key={subService.title}
+												className={cn(
+													"group p-5 rounded-2xl border border-border bg-card",
+													"hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5",
+													"transition-all duration-300 ml-0",
+												)}
+											>
+												<div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-4 group-hover:scale-110 transition-transform">
+													<Icon className="w-6 h-6" />
+												</div>
+												<h4 className="font-semibold text-lg mb-2">
+													{subService.title}
+												</h4>
+												<p className="text-muted-foreground text-sm leading-relaxed">
+													{subService.description}
+												</p>
 											</div>
-											<h4 className="font-semibold text-lg mb-2">
-												{subService.title}
-											</h4>
-											<p className="text-muted-foreground text-sm leading-relaxed">
-												{subService.description}
-											</p>
-										</div>
-									);
-								})}
+										);
+									})}
+								</div>
 							</div>
-						</div>
-					)}
+						)}
+					</div>
 				</div>
 			</div>
 		</section>

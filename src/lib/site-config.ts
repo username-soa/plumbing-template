@@ -638,7 +638,7 @@ export const SITE_CONFIG = {
 		{ label: "About Us", href: "#" },
 		{ label: "Our Services", href: "/services" },
 		{ label: "Case Studies", href: "#" },
-		{ label: "Contact Us", href: "#" },
+		{ label: "Contact Us", href: "/contact" },
 	],
 	contact: {
 		phone: "+1 (555) 123-4567",

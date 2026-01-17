@@ -121,6 +121,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
 				longDescription={service.longDescription || service.description}
 				subServices={service.subServices}
 				process={service.process}
+				image="/images/service-details-plumber.png"
 			/>
 
 			{/* Why Choose Us + Stats */}
