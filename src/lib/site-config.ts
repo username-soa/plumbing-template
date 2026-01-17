@@ -635,7 +635,7 @@ export const SITE_CONFIG = {
 	],
 	navLinks: [
 		{ label: "Home", href: "/" },
-		{ label: "About Us", href: "#" },
+		{ label: "About Us", href: "/about" },
 		{ label: "Our Services", href: "/services" },
 		{ label: "Case Studies", href: "#" },
 		{ label: "Contact Us", href: "/contact" },
@@ -675,4 +675,139 @@ export const SITE_CONFIG = {
 			label: "EXECUTION + REPAIR",
 		},
 	],
+	aboutUs: {
+		companyStory: {
+			foundedYear: 2005,
+			headline: "Your Trusted Water City Plumbers Since 2005",
+			subheadline:
+				"Family-owned and locally operated, serving our community with integrity",
+			story: `FlowMasters was founded in 2005 by master plumber James Mitchell right here in Water City. What started as a one-man operation working out of a single truck has grown into a trusted team of 25+ licensed professionals serving the entire metropolitan area.
+
+Our founder's vision was simple: provide honest, reliable plumbing services that treat every customer like family. Nearly two decades later, that commitment remains at the heart of everything we do.
+
+As a locally-owned business, we understand the unique plumbing challenges our Water City neighbors face – from the older pipes in Downtown District to the modern systems in Riverside Heights. We're not just plumbers; we're your neighbors, invested in the community we serve.`,
+			milestones: [
+				{ year: 2005, event: "Founded in Water City by James Mitchell" },
+				{
+					year: 2010,
+					event: "Expanded to 10 technicians, added commercial services",
+				},
+				{ year: 2015, event: "Opened second location in North Valley" },
+				{ year: 2020, event: "Launched 24/7 emergency response team" },
+				{ year: 2024, event: "Celebrating 10,000+ satisfied customers" },
+			],
+		},
+		serviceAreas: [
+			"Water City",
+			"Downtown District",
+			"Riverside Heights",
+			"North Valley",
+			"Oakwood Estates",
+			"Sunset Park",
+			"Harbor View",
+			"Industrial Zone",
+			"Lakeside Community",
+			"West End",
+			"Maple Grove",
+			"Cedar Hills",
+		],
+		team: [
+			{
+				name: "James Mitchell",
+				role: "Founder & Master Plumber",
+				bio: "With 30+ years in the trade, James founded FlowMasters to bring honest, quality plumbing to Water City. Licensed Master Plumber with expertise in commercial and residential systems.",
+				certifications: [
+					"Master Plumber License #MP-12345",
+					"Backflow Prevention Certified",
+				],
+				image: "/avatar-mark.png",
+			},
+			{
+				name: "Sarah Chen",
+				role: "Operations Manager",
+				bio: "Sarah ensures every job runs smoothly, from scheduling to follow-up. A Water City native, she brings 15 years of customer service excellence to our team.",
+				certifications: [
+					"OSHA Safety Certified",
+					"Customer Service Excellence",
+				],
+				image: "/avatar-kathryn.png",
+			},
+			{
+				name: "Marcus Thompson",
+				role: "Lead Technician",
+				bio: "Marcus leads our emergency response team with 12 years of field experience. Specializes in leak detection and water heater systems.",
+				certifications: [
+					"Journeyman Plumber License #JP-67890",
+					"Gas Line Certified",
+				],
+				image: "/avatar-jerome.png",
+			},
+		],
+		trustStats: [
+			{ value: "20+", label: "Years of Experience" },
+			{ value: "10,000+", label: "Happy Customers" },
+			{ value: "25+", label: "Licensed Technicians" },
+			{ value: "24/7", label: "Emergency Service" },
+			{ value: "100%", label: "Satisfaction Guaranteed" },
+			{ value: "< 60 min", label: "Average Response Time" },
+		],
+		certifications: [
+			{
+				name: "Licensed & Insured",
+				description: "State Licensed Plumbing Contractor #PL-98765",
+				icon: "ShieldCheck",
+			},
+			{
+				name: "BBB Accredited",
+				description: "A+ Rating with Better Business Bureau",
+				icon: "Award",
+			},
+			{
+				name: "Chamber of Commerce",
+				description: "Proud Member of Water City Chamber",
+				icon: "Building2",
+			},
+			{
+				name: "Bonded",
+				description: "$2 Million Liability Coverage",
+				icon: "Lock",
+			},
+			{
+				name: "Master Plumber Certified",
+				description: "All technicians state-certified",
+				icon: "BadgeCheck",
+			},
+			{
+				name: "Green Plumbing Certified",
+				description: "Eco-friendly practices endorsed",
+				icon: "Leaf",
+			},
+		],
+		values: [
+			{
+				title: "Integrity First",
+				description:
+					"Honest pricing with no hidden fees. We explain the problem and options before any work begins.",
+				icon: "Heart",
+			},
+			{
+				title: "Quality Craftsmanship",
+				description:
+					"We do it right the first time. All work backed by our satisfaction guarantee.",
+				icon: "Star",
+			},
+			{
+				title: "Community Focused",
+				description:
+					"Locally owned, locally operated. We support Water City schools and charities.",
+				icon: "Users",
+			},
+			{
+				title: "Always Available",
+				description:
+					"Plumbing emergencies don't wait. Neither do we. 24/7/365 service.",
+				icon: "Clock",
+			},
+		],
+	},
 };
