@@ -1,3 +1,4 @@
+import type { LucideIcon } from "lucide-react";
 import {
 	Facebook,
 	Instagram,
@@ -19,7 +20,7 @@ import {
 } from "@/components/ui/typography";
 import { SITE_CONFIG } from "@/lib/site-config";
 
-const SOCIAL_ICONS: Record<string, any> = {
+const SOCIAL_ICONS: Record<string, LucideIcon> = {
 	facebook: Facebook,
 	instagram: Instagram,
 	linkedin: Linkedin,
@@ -33,11 +34,10 @@ export function Footer() {
 				{/* Integrated CTA Section */}
 				<div className="flex flex-col items-center justify-between gap-8 text-center md:text-left mb-16">
 					<TypographyH2 className="text-4xl md:text-5xl font-bold border-none tracking-tight text-center">
-						Join Thousands of Happy Clients and Book Today
+						{SITE_CONFIG.footer.cta.headline}
 					</TypographyH2>
 					<p className="text-muted-foreground text-lg md:text-xl font-light text-center">
-						Reliable, efficient, and professional plumbing services are just a
-						click away.
+						{SITE_CONFIG.footer.cta.subheadline}
 					</p>
 
 					<div className="shrink-0 flex flex-col sm:flex-row gap-4">
@@ -46,7 +46,9 @@ export function Footer() {
 							className="font-bold text-lg px-6 h-12 hover:shadow-md transition-all hover:scale-105 rounded-full"
 							asChild
 						>
-							<Link href="/contact">Book Service Now</Link>
+							<Link href="/contact">
+								{SITE_CONFIG.footer.cta.primaryButtonText}
+							</Link>
 						</Button>
 						<Button
 							size="lg"
@@ -55,7 +57,8 @@ export function Footer() {
 							asChild
 						>
 							<a href={`tel:${SITE_CONFIG.contact.phone}`}>
-								Call {SITE_CONFIG.contact.phone}
+								{SITE_CONFIG.footer.cta.secondaryButtonText}{" "}
+								{SITE_CONFIG.contact.phone}
 							</a>
 						</Button>
 					</div>
@@ -76,7 +79,15 @@ export function Footer() {
 						</TypographyMuted>
 						<div className="flex gap-2">
 							{SITE_CONFIG.socials.map((social) => {
-								const Icon = SOCIAL_ICONS[social.platform] || Facebook;
+								const Icon = SOCIAL_ICONS[social.platform];
+								if (!Icon) {
+									if (process.env.NODE_ENV === "development") {
+										console.warn(
+											`[Footer] Unknown social platform: "${social.platform}". Add it to SOCIAL_ICONS.`,
+										);
+									}
+									return null;
+								}
 								return (
 									<SocialButton
 										key={social.platform}
@@ -108,9 +119,17 @@ export function Footer() {
 						<TypographyH4 className="mb-5 text-foreground font-semibold">
 							Contact Us
 						</TypographyH4>
-						<ul className="space-y-2 mb-3">
-							<ContactItem icon={Phone} text={SITE_CONFIG.contact.phone} />
-							<ContactItem icon={Mail} text={SITE_CONFIG.contact.email} />
+						<ul className="space-y-3 mb-3">
+							<ContactItem
+								icon={Phone}
+								text={SITE_CONFIG.contact.phone}
+								href={`tel:${SITE_CONFIG.contact.phone}`}
+							/>
+							<ContactItem
+								icon={Mail}
+								text={SITE_CONFIG.contact.email}
+								href={`mailto:${SITE_CONFIG.contact.email}`}
+							/>
 							<ContactItem icon={MapPin} text={SITE_CONFIG.contact.address} />
 						</ul>
 					</div>
@@ -137,7 +156,8 @@ export function Footer() {
 				{/* Bottom Section: Copyright */}
 				<div className="flex flex-col md:flex-row justify-between items-center text-sm text-muted-foreground">
 					<TypographyMuted>
-						© Copyright 2025 {SITE_CONFIG.brand.name}. All Rights Reserved.
+						© Copyright {new Date().getFullYear()} {SITE_CONFIG.brand.name}. All
+						Rights Reserved.
 					</TypographyMuted>
 					<div className="flex gap-4 mt-4 md:mt-0">
 						<Button
@@ -166,7 +186,7 @@ function SocialButton({
 	label,
 	href,
 }: {
-	icon: any;
+	icon: LucideIcon;
 	label: string;
 	href: string;
 }) {
@@ -177,7 +197,12 @@ function SocialButton({
 			className="rounded-full hover:bg-primary hover:text-primary-foreground transition-colors"
 			asChild
 		>
-			<a href={href} aria-label={label}>
+			<a
+				href={href}
+				aria-label={label}
+				target="_blank"
+				rel="noopener noreferrer"
+			>
 				<Icon className="w-5 h-5" />
 			</a>
 		</Button>
@@ -211,13 +236,40 @@ function FooterLink({
 	);
 }
 
-function ContactItem({ icon: Icon, text }: { icon: any; text: string }) {
-	return (
-		<li className="flex items-start gap-3 text-muted-foreground group">
-			<div className="p-2 rounded-full bg-accent/10 text-accent mt-[-4px]">
-				<Icon className="w-4 h-4" />
+function ContactItem({
+	icon: Icon,
+	text,
+	href,
+}: {
+	icon: LucideIcon;
+	text: string;
+	href?: string;
+}) {
+	const content = (
+		<>
+			<div className="p-2 rounded-full bg-primary/10 text-primary mt-[-4px] shrink-0">
+				<Icon className="w-3 h-3" />
 			</div>
-			<TypographyMuted>{text}</TypographyMuted>
+			<span className="text-muted-foreground group-hover:text-primary transition-colors">
+				{text}
+			</span>
+		</>
+	);
+
+	return (
+		<li>
+			{href ? (
+				<a
+					href={href}
+					className="flex items-start gap-3 group"
+					target={href.startsWith("http") ? "_blank" : undefined}
+					rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+				>
+					{content}
+				</a>
+			) : (
+				<div className="flex items-start gap-3 group">{content}</div>
+			)}
 		</li>
 	);
 }

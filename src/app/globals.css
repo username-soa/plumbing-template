@@ -225,3 +225,180 @@
 		}
 	}
 }
+
+/* ================================
+   LIQUID GLASS EFFECT STYLES
+   iOS-style glassmorphism effect
+   ================================ */
+
+.liquid-glass-container {
+	position: relative;
+	pointer-events: none;
+	overflow: visible;
+}
+
+.liquid-glass-content {
+	z-index: 100;
+	border-radius: var(--corner-radius);
+	pointer-events: auto;
+	display: block;
+	position: relative;
+}
+
+.liquid-glass-material {
+	z-index: 1;
+	pointer-events: none;
+	position: absolute;
+	inset: 0;
+	overflow: visible;
+}
+
+.liquid-glass-material::after {
+	content: "";
+	z-index: 3;
+	background-color: rgba(128, 128, 128, 0);
+	display: block;
+}
+
+.liquid-glass-material::after,
+.liquid-glass-material > div {
+	border-radius: var(--corner-radius);
+	position: absolute;
+	inset: 0;
+	overflow: hidden;
+}
+
+.liquid-glass-material > div {
+	box-sizing: border-box;
+	z-index: 2;
+}
+
+.liquid-glass-edge-reflection {
+	z-index: 4;
+	margin: calc(var(--total-strength) * -1);
+	border-radius: calc(var(--corner-radius) + var(--total-strength));
+	-webkit-backdrop-filter: blur(var(--total-strength)) brightness(1.2)
+		saturate(1.2);
+	backdrop-filter: blur(var(--total-strength)) brightness(1.2) saturate(1.2);
+	padding: var(--edge-width);
+	border: var(--total-strength) solid transparent;
+	-webkit-mask:
+		linear-gradient(#fff 0 0) padding-box,
+		linear-gradient(#fff 0 0) content-box;
+	-webkit-mask-composite: xor;
+	mask:
+		linear-gradient(#fff 0 0) padding-box exclude,
+		linear-gradient(#fff 0 0) content-box exclude;
+}
+
+.liquid-glass-emboss-reflection {
+	-webkit-backdrop-filter: blur(calc(var(--total-strength) * 1.5)) invert(0.05)
+		brightness(1.02) saturate(1.05) hue-rotate(-5deg) contrast(1.1);
+	backdrop-filter: blur(calc(var(--total-strength) * 1.5)) invert(0.05)
+		brightness(1.02) saturate(1.05) hue-rotate(-5deg) contrast(1.1);
+	padding: var(--emboss-width);
+	border: 0 solid transparent;
+	-webkit-mask:
+		linear-gradient(#fff 0 0) padding-box,
+		linear-gradient(#fff 0 0) content-box;
+	-webkit-mask-composite: xor;
+	mask:
+		linear-gradient(#fff 0 0) padding-box exclude,
+		linear-gradient(#fff 0 0) content-box exclude;
+}
+
+.liquid-glass-refraction {
+	-webkit-backdrop-filter: invert(0.02) brightness(1.05) contrast(1.05);
+	backdrop-filter: invert(0.02) brightness(1.05) contrast(1.05);
+	padding: var(--refraction-width);
+	border: calc(var(--emboss-width)) solid transparent;
+	-webkit-mask:
+		linear-gradient(#fff 0 0) padding-box,
+		linear-gradient(#fff 0 0) content-box;
+	-webkit-mask-composite: xor;
+	mask:
+		linear-gradient(#fff 0 0) padding-box exclude,
+		linear-gradient(#fff 0 0) content-box exclude;
+}
+
+.liquid-glass-blur {
+	-webkit-backdrop-filter: blur(var(--extra-blur)) brightness(1.05);
+	backdrop-filter: blur(var(--extra-blur)) brightness(1.05);
+	border-radius: calc(
+		var(--corner-radius) -
+		(var(--emboss-width) + var(--refraction-width))
+	);
+	margin: calc(var(--emboss-width) + var(--refraction-width));
+}
+
+.liquid-glass-blend-layers {
+	z-index: 3;
+	-webkit-backdrop-filter: blur(
+		calc((var(--softness) * 0.2) + (var(--extra-blur) * 0.2))
+	);
+	backdrop-filter: blur(
+		calc((var(--softness) * 0.2) + (var(--extra-blur) * 0.2))
+	);
+}
+
+.liquid-glass-blend-edge {
+	z-index: 8;
+	-webkit-backdrop-filter: blur(calc(var(--edge-width) * 0.4)) contrast(1.05)
+		saturate(1.05);
+	backdrop-filter: blur(calc(var(--edge-width) * 0.4)) contrast(1.05)
+		saturate(1.05);
+}
+
+.liquid-glass-container::before {
+	z-index: 20;
+	-webkit-backdrop-filter: invert(var(--invert));
+	backdrop-filter: invert(var(--invert));
+}
+
+.liquid-glass-container::before,
+.liquid-glass-material::before {
+	content: "";
+	border-radius: var(--corner-radius);
+	display: block;
+	position: absolute;
+	inset: 0;
+}
+
+.liquid-glass-material::before {
+	z-index: 11;
+	-webkit-backdrop-filter: invert(0.03) opacity(0.3);
+	backdrop-filter: invert(0.03) opacity(0.3);
+	background: linear-gradient(
+		155deg,
+		rgba(255, 255, 255, 0.15),
+		rgba(0, 0, 0, 0.2) 50%,
+		rgba(255, 255, 255, 0.15)
+	);
+	border: 0 solid transparent;
+	padding: 1px;
+	-webkit-mask:
+		linear-gradient(#fff 0 0) padding-box,
+		linear-gradient(#fff 0 0) content-box;
+	-webkit-mask-composite: xor;
+	mask:
+		linear-gradient(#fff 0 0) padding-box exclude,
+		linear-gradient(#fff 0 0) content-box exclude;
+}
+
+.liquid-glass-highlight {
+	z-index: 12;
+	border-radius: var(--corner-radius);
+	-webkit-backdrop-filter: brightness(1.05) contrast(1.05) saturate(1.02)
+		opacity(0.3);
+	backdrop-filter: brightness(1.05) contrast(1.05) saturate(1.02) opacity(0.3);
+	border: 0 solid transparent;
+	display: block;
+	padding: 1px;
+	-webkit-mask:
+		linear-gradient(#fff 0 0) padding-box,
+		linear-gradient(#fff 0 0) content-box;
+	-webkit-mask-composite: xor;
+	mask:
+		linear-gradient(#fff 0 0) padding-box exclude,
+		linear-gradient(#fff 0 0) content-box exclude;
+}

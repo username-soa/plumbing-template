@@ -5,10 +5,26 @@ export const SITE_CONFIG = {
 			"Professional plumbing services for residential and commercial properties. We are dedicated to making every space clean, efficient, and welcoming.",
 	},
 	socials: [
-		{ platform: "facebook", label: "Facebook", href: "#" },
-		{ platform: "linkedin", label: "LinkedIn", href: "#" },
-		{ platform: "instagram", label: "Instagram", href: "#" },
-		{ platform: "twitter", label: "Twitter", href: "#" },
+		{
+			platform: "facebook",
+			label: "Facebook",
+			href: "https://facebook.com/FlowMasters",
+		},
+		{
+			platform: "linkedin",
+			label: "LinkedIn",
+			href: "https://linkedin.com/company/FlowMasters",
+		},
+		{
+			platform: "instagram",
+			label: "Instagram",
+			href: "https://instagram.com/FlowMasters",
+		},
+		{
+			platform: "twitter",
+			label: "Twitter",
+			href: "https://twitter.com/FlowMasters",
+		},
 	],
 	services: [
 		{
@@ -812,6 +828,15 @@ As a locally-owned business, we understand the unique plumbing challenges our Wa
 				icon: "Clock",
 			},
 		],
+	},
+	footer: {
+		cta: {
+			headline: "Join Thousands of Happy Clients and Book Today",
+			subheadline:
+				"Reliable, efficient, and professional plumbing services are just a click away.",
+			primaryButtonText: "Book Service Now",
+			secondaryButtonText: "Call",
+		},
 	},
 	legal: {
 		// IMPORTANT: Buyers must customize these values and have legal pages reviewed by a qualified Australian lawyer
