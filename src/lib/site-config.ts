@@ -696,6 +696,9 @@ As a locally-owned business, we understand the unique plumbing challenges our Wa
 				{ year: 2020, event: "Launched 24/7 emergency response team" },
 				{ year: 2024, event: "Celebrating 10,000+ satisfied customers" },
 			],
+			timeline: {
+				title: "Our Journey",
+			},
 		},
 		serviceAreas: [
 			"Water City",
@@ -809,5 +812,33 @@ As a locally-owned business, we understand the unique plumbing challenges our Wa
 				icon: "Clock",
 			},
 		],
+	},
+	legal: {
+		// IMPORTANT: Buyers must customize these values and have legal pages reviewed by a qualified Australian lawyer
+		businessDetails: {
+			registeredName: "FlowMasters Plumbing Pty Ltd", // Replace with registered business name
+			abn: "XX XXX XXX XXX", // Replace with actual ABN
+			acn: "", // Optional: Australian Company Number if applicable
+			tradingAs: "FlowMasters", // Trading name if different
+			licenseNumber: "XXXXXX", // State plumbing license number
+			licenseState: "NSW", // State where licensed (NSW, VIC, QLD, SA, WA, TAS, NT, ACT)
+		},
+		contact: {
+			privacyOfficer: "James Mitchell", // Person responsible for privacy matters
+			privacyEmail: "privacy@flowmasters.com",
+			complaintsEmail: "complaints@flowmasters.com",
+		},
+		jurisdiction: {
+			state: "New South Wales", // State for legal jurisdiction
+			stateShort: "NSW",
+		},
+		policies: {
+			dataRetentionYears: 7, // How long customer records are kept
+			warrantyPeriodMonths: 12, // Standard workmanship warranty
+			cancellationNoticeHours: 24, // Required notice for appointment cancellation
+			depositPercentage: 0, // Deposit required (0 if none)
+			paymentTermsDays: 7, // Days to pay invoice after completion
+		},
+		lastUpdated: "January 2026", // Update when policies change
 	},
 };

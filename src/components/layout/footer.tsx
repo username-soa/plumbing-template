@@ -145,14 +145,14 @@ export function Footer() {
 							className="text-muted-foreground hover:text-primary h-auto p-0 font-normal"
 							asChild
 						>
-							<Link href="#">Privacy Policy</Link>
+							<Link href="/privacy-policy">Privacy Policy</Link>
 						</Button>
 						<Button
 							variant="link"
 							className="text-muted-foreground hover:text-primary h-auto p-0 font-normal"
 							asChild
 						>
-							<Link href="#">Terms & Conditions</Link>
+							<Link href="/terms-conditions">Terms & Conditions</Link>
 						</Button>
 					</div>
 				</div>
