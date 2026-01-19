@@ -650,11 +650,11 @@ export const SITE_CONFIG = {
 		},
 	],
 	navLinks: [
-		{ label: "Home", href: "/" },
 		{ label: "About Us", href: "/about" },
 		{ label: "Our Services", href: "/services" },
-		{ label: "Case Studies", href: "#" },
-		{ label: "Contact Us", href: "/contact" },
+		{ label: "Case Studies", href: "/case-studies" },
+		{ label: "Contact", href: "/contact" },
+		{ label: "Blog", href: "/blog" },
 	],
 	contact: {
 		phone: "+1 (555) 123-4567",
