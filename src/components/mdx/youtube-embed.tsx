@@ -1,6 +1,5 @@
 "use client";
 
-import * as React from "react";
 import { cn } from "@/lib/utils";
 
 interface YouTubeEmbedProps {
@@ -26,7 +25,7 @@ export function YouTubeEmbed({
 	return (
 		<div
 			className={cn(
-				"relative w-full rounded-xl overflow-hidden border border-border bg-black aspect-video",
+				"relative w-full rounded-xl overflow-hidden border border-border bg-black aspect-video my-6",
 				className,
 			)}
 		>

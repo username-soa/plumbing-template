@@ -59,6 +59,7 @@ export function ImageGallery({
 													img.alt || img.caption || `Gallery image ${index + 1}`
 												}
 												fill
+												sizes="(max-width: 768px) 50vw, 33vw"
 												className="object-cover transition-transform group-hover:scale-105"
 											/>
 										</div>
@@ -96,6 +97,7 @@ export function ImageGallery({
 													img.alt || img.caption || `Gallery image ${index + 1}`
 												}
 												fill
+												sizes="100vw"
 												className="object-contain"
 												priority
 											/>
@@ -141,6 +143,7 @@ export function ImageGallery({
 									src={img.src}
 									alt={img.alt || img.caption || `Gallery image ${index + 1}`}
 									fill
+									sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
 									className="object-cover transition-transform group-hover:scale-105"
 								/>
 							</div>
@@ -176,6 +179,7 @@ export function ImageGallery({
 									src={img.src}
 									alt={img.alt || img.caption || `Gallery image ${index + 1}`}
 									fill
+									sizes="100vw"
 									className="object-contain"
 									priority
 								/>

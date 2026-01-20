@@ -34,8 +34,14 @@ export function Testimonial({
 				</blockquote>
 				<figcaption className="mt-6 flex flex-col items-center justify-center gap-2">
 					{avatar && (
-						<div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-primary/20">
-							<Image src={avatar} alt={author} fill className="object-cover" />
+						<div className="relative w-12 h-12 rounded-full overflow-hidden border border-primary/20 pointer-events-none">
+							<Image
+								src={avatar}
+								alt={author}
+								fill
+								sizes="48px"
+								className="object-cover"
+							/>
 						</div>
 					)}
 					<div className="text-center">

@@ -1,10 +1,8 @@
 "use client";
 
-import * as React from "react";
-import Link from "next/link";
 import { ArrowRight, Wrench } from "lucide-react";
+import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { buttonVariants } from "@/components/ui/button";
 
 interface ServiceLinkProps {
 	slug: string;
@@ -23,7 +21,7 @@ export function ServiceLink({ slug, label, className }: ServiceLinkProps) {
 		>
 			<Wrench className="w-4 h-4" />
 			<span>{label || "View Related Service"}</span>
-			<ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+			<ArrowRight className="w-4 h-4 transition-transform -rotate-45 group-hover:rotate-0" />
 		</Link>
 	);
 }

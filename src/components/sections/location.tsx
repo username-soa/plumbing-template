@@ -103,6 +103,7 @@ export function LocationSection() {
 								src="/map-styled.png"
 								alt="Office Location Map"
 								fill
+								sizes="(max-width: 1024px) 100vw, 50vw"
 								className="object-cover group-hover:scale-105 transition-transform duration-700"
 							/>
 							<div className="absolute bottom-6 right-6 bg-white/30 backdrop-blur-md text-xs font-bold px-3 py-1.5 rounded-md shadow-sm text-foreground">

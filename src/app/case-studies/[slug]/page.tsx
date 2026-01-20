@@ -52,6 +52,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
 						src={study.frontmatter.heroImage}
 						alt={study.frontmatter.title}
 						fill
+						sizes="100vw"
 						className="object-cover brightness-[0.3]"
 						priority
 					/>

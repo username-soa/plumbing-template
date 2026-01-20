@@ -34,6 +34,7 @@ export function BeforeAfter({
 					src={after}
 					alt="After result"
 					fill
+					sizes="(max-width: 768px) 100vw, 800px"
 					className="object-cover"
 					priority
 				/>
@@ -53,6 +54,7 @@ export function BeforeAfter({
 						src={before}
 						alt="Before state"
 						fill
+						sizes="(max-width: 768px) 100vw, 800px"
 						className="object-cover"
 						priority
 					/>
@@ -104,10 +106,10 @@ export function BeforeAfter({
 			</div>
 
 			{/* Fixed Labels (always visible) */}
-			<div className="absolute top-4 left-4 bg-black/50 text-white px-2 py-1 rounded text-sm font-medium backdrop-blur-sm pointer-events-none z-30">
+			<div className="absolute top-2 left-2 bg-black/50 text-white px-2 py-1 rounded md:text-sm text-[10px] font-medium backdrop-blur-sm pointer-events-none z-30">
 				{beforeLabel}
 			</div>
-			<div className="absolute top-4 right-4 bg-black/50 text-white px-2 py-1 rounded text-sm font-medium backdrop-blur-sm pointer-events-none z-30">
+			<div className="absolute top-2 right-2 bg-black/50 text-white px-2 py-1 rounded md:text-sm text-[10px] font-medium backdrop-blur-sm pointer-events-none z-30">
 				{afterLabel}
 			</div>
 		</div>

@@ -1,7 +1,7 @@
 export function CaseStudiesHero() {
 	return (
 		<section className="relative pt-32 pb-16 md:pt-48 md:pb-32 overflow-hidden">
-			<div className="container relative z-10">
+			<div className="container mx-auto px-6 relative z-10">
 				<div className="max-w-3xl mx-auto text-center space-y-6">
 					<h1 className="text-4xl md:text-6xl font-bold tracking-tight text-foreground">
 						Our Success Stories

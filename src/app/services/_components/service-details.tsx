@@ -125,6 +125,7 @@ export function ServiceDetails({
 									src={image}
 									alt={`${title} service`}
 									fill
+									sizes="(max-width: 1024px) 80vw, 40vw"
 									className="object-cover hover:scale-105 transition-transform duration-700"
 								/>
 							</div>

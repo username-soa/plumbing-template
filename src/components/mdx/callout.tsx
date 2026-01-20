@@ -1,6 +1,6 @@
 "use client";
 
-import * as React from "react";
+import { cn } from "@/lib/utils";
 import {
 	Info,
 	AlertTriangle,
@@ -8,7 +8,6 @@ import {
 	CheckCircle,
 	Lightbulb,
 } from "lucide-react";
-import { cn } from "@/lib/utils";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 interface CalloutProps {
