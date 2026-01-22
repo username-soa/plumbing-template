@@ -69,9 +69,9 @@ export function ProjectMeta({
 			<div className="absolute top-0 left-0 w-full h-1 bg-linear-to-r from-primary/60 via-primary to-primary/60" />
 
 			<div className="p-6">
-				<h4 className="text-xs font-semibold uppercase tracking-widest text-primary mb-5">
+				<p className="text-xs font-semibold uppercase tracking-widest text-primary mb-5">
 					Project Details
-				</h4>
+				</p>
 
 				<div
 					className={cn(

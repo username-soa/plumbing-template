@@ -3,6 +3,11 @@
 import * as Icons from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { SITE_CONFIG } from "@/lib/site-config";
+import {
+	TypographyH2,
+	TypographyH3,
+	TypographyP,
+} from "@/components/ui/typography";
 import { cn } from "@/lib/utils";
 
 interface ProcessStep {
@@ -28,13 +33,13 @@ export function ProcessSteps({ steps }: ProcessStepsProps) {
 					<span className="text-primary font-semibold text-sm uppercase tracking-wider">
 						Our Process
 					</span>
-					<h2 className="text-3xl md:text-4xl font-bold tracking-tight mt-2 mb-4">
+					<TypographyH2 className="text-3xl md:text-4xl font-bold tracking-tight mt-2 mb-4 border-none">
 						How It Works
-					</h2>
-					<p className="text-muted-foreground text-lg">
+					</TypographyH2>
+					<TypographyP className="text-muted-foreground text-lg mt-0">
 						Simple, transparent, and stress-free service in{" "}
 						{processSteps.length} easy steps.
-					</p>
+					</TypographyP>
 				</div>
 
 				<div
@@ -59,12 +64,12 @@ export function ProcessSteps({ steps }: ProcessStepsProps) {
 										</div>
 									</div>
 
-									<h3 className="text-xl font-bold mb-3 text-card-foreground">
+									<TypographyH3 className="text-xl font-bold mb-3 text-card-foreground">
 										{index + 1}. {step.title}
-									</h3>
-									<p className="text-muted-foreground leading-relaxed">
+									</TypographyH3>
+									<TypographyP className="text-muted-foreground leading-relaxed mt-0">
 										{step.description}
-									</p>
+									</TypographyP>
 								</div>
 							</SpotlightCard>
 						);

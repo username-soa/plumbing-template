@@ -19,6 +19,7 @@ import {
 	CardHeader,
 	CardTitle,
 } from "@/components/ui/card";
+import { TypographyH2, TypographyP } from "@/components/ui/typography";
 import { cn } from "@/lib/utils";
 
 const ICON_MAP: Record<string, React.ElementType> = {
@@ -48,16 +49,16 @@ export function ServicesSection() {
 				{/* Section Header */}
 				<div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
 					<div className="max-w-2xl">
-						<span className="inline-block px-3 py-1 mb-4 text-xs font-semibold uppercase tracking-wider text-primary bg-primary/10 rounded-md">
+						<span className="inline-block px-3 py-1 mb-4 text-xs font-semibold uppercase tracking-wider text-foreground bg-muted rounded-md">
 							What We Offer
 						</span>
-						<h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-3">
+						<TypographyH2 className="text-3xl md:text-4xl font-bold tracking-tight mb-3 border-none">
 							Our Professional Services
-						</h2>
-						<p className="text-muted-foreground text-lg">
+						</TypographyH2>
+						<TypographyP className="text-muted-foreground text-lg mt-0">
 							From routine maintenance to emergency repairs, we handle all your
 							plumbing needs with precision and care.
-						</p>
+						</TypographyP>
 					</div>
 					<Button variant="outline" className="self-start md:self-auto" asChild>
 						<Link href="/services" className="flex items-center gap-2">
@@ -134,7 +135,7 @@ export function ServicesSection() {
 											<CardDescription
 												className={cn(
 													isFeatured
-														? "text-primary-foreground/80 line-clamp-3"
+														? "text-primary-foreground line-clamp-3"
 														: "text-muted-foreground line-clamp-2",
 												)}
 											>

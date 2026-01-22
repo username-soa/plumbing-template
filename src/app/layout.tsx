@@ -1,59 +1,47 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Poppins } from "next/font/google";
+import { Geist, Geist_Mono, Poppins, Bebas_Neue } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "@/components/providers/theme-provider";
-import { Header } from "@/components/layout/header";
-import { ThemeSwitcher } from "@/components/layout/theme-switcher";
-import { THEME_CONFIG } from "@/lib/theme-config";
-import { Footer } from "@/components/layout/footer";
-
+import { LayoutBody } from "@/components/layout/layout-body";
 
 const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+	variable: "--font-geist-sans",
+	subsets: ["latin"],
 });
 
 const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+	variable: "--font-geist-mono",
+	subsets: ["latin"],
 });
 
 const poppins = Poppins({
-  variable: "--font-poppins",
-  subsets: ["latin"],
-  weight: ["400", "900"],
+	variable: "--font-poppins",
+	subsets: ["latin"],
+	weight: ["400", "900"],
+});
+
+const bebas = Bebas_Neue({
+	variable: "--font-bebas",
+	subsets: ["latin"],
+	weight: ["400"],
 });
 
 export const metadata: Metadata = {
-  title: "Plumbing Services",
-  description: "Professional Plumbing Template",
+	title: "Plumbing Services",
+	description: "Professional Plumbing Template",
 };
 
 export default function RootLayout({
-  children,
+	children,
 }: Readonly<{
-  children: React.ReactNode;
+	children: React.ReactNode;
 }>) {
-  return (
-    <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable} antialiased min-h-screen flex flex-col`}
-      >
-        <ThemeProvider
-          attribute="data-theme"
-          defaultTheme={THEME_CONFIG.defaultTheme}
-          enableSystem
-          disableTransitionOnChange
-        >
-          <Header />
-          <ThemeSwitcher />
-          <main className="flex-1">
-            {children}
-          </main>
-          
-          <Footer />
-        </ThemeProvider>
-      </body>
-    </html>
-  );
+	return (
+		<html lang="en" suppressHydrationWarning>
+			<body
+				className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable} ${bebas.variable} antialiased min-h-screen flex flex-col`}
+			>
+				<LayoutBody>{children}</LayoutBody>
+			</body>
+		</html>
+	);
 }

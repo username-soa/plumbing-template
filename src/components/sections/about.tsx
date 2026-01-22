@@ -1,25 +1,27 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowUpRight } from "lucide-react";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment } from "react";
 import { Button } from "@/components/ui/button";
-import {
-	Carousel,
-	type CarouselApi,
-	CarouselContent,
-	CarouselItem,
-} from "@/components/ui/carousel";
-import Autoplay from "embla-carousel-autoplay";
 import { cn } from "@/lib/utils";
 import {
 	TypographyH2,
 	TypographyH3,
-	TypographyH4,
 	TypographyMuted,
-	TypographySmall,
 } from "@/components/ui/typography";
+
+// Dynamically import the mobile carousel to reduce initial bundle size
+// The carousel uses embla-carousel which is heavy and only needed on mobile
+const AboutMobileCarousel = dynamic(() => import("./about-mobile-carousel"), {
+	ssr: false,
+	loading: () => (
+		<div className="md:hidden">
+			<div className="animate-pulse bg-muted rounded-3xl aspect-2/3" />
+		</div>
+	),
+});
 
 const STATS = [
 	{
@@ -77,7 +79,7 @@ function AboutCard({
 				src={image}
 				alt={title}
 				fill
-				sizes="(max-width: 768px) 100vw, 33vw"
+				sizes="(max-width: 768px) 100vw, 400px"
 				className="object-cover transition-transform duration-700 group-hover:scale-110"
 			/>
 			<div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
@@ -95,22 +97,7 @@ function AboutCard({
 }
 
 export function AboutSection() {
-	const [api, setApi] = useState<CarouselApi>();
-	const [current, setCurrent] = useState(0);
-	const [count, setCount] = useState(0);
-
-	useEffect(() => {
-		if (!api) {
-			return;
-		}
-
-		setCount(api.scrollSnapList().length);
-		setCurrent(api.selectedScrollSnap());
-
-		api.on("select", () => {
-			setCurrent(api.selectedScrollSnap());
-		});
-	}, [api]);
+	// State and effects removed as they are now handled in AboutMobileCarousel
 
 	return (
 		<section className="w-full py-24 bg-background">
@@ -143,9 +130,9 @@ export function AboutSection() {
 								<span className="text-5xl font-bold tracking-tighter text-foreground">
 									{stat.value}
 								</span>
-								<TypographyH4 className="font-bold text-lg">
+								<TypographyH3 className="font-bold text-lg">
 									{stat.label}
-								</TypographyH4>
+								</TypographyH3>
 								<TypographyMuted className="text-base leading-relaxed">
 									{stat.description}
 								</TypographyMuted>
@@ -165,39 +152,7 @@ export function AboutSection() {
 				</div>
 
 				{/* Carousel - Mobile */}
-				<div className="md:hidden">
-					<Carousel
-						setApi={setApi}
-						plugins={[
-							Autoplay({
-								delay: 3000,
-							}),
-						]}
-						className="w-full"
-					>
-						<CarouselContent>
-							{CARDS.map((card) => (
-								<CarouselItem key={card.title}>
-									<AboutCard {...card} />
-								</CarouselItem>
-							))}
-						</CarouselContent>
-					</Carousel>
-					<div className="flex justify-center gap-2 mt-4">
-						{Array.from({ length: count }).map((_, index) => (
-							<button
-								key={CARDS[index]?.title ?? `slide-${index}`}
-								type="button"
-								className={cn(
-									"h-2 rounded-full transition-all duration-300",
-									current === index ? "w-8 bg-primary" : "w-2 bg-primary/30",
-								)}
-								onClick={() => api?.scrollTo(index)}
-								aria-label={`Go to slide ${index + 1}`}
-							/>
-						))}
-					</div>
-				</div>
+				<AboutMobileCarousel />
 			</div>
 		</section>
 	);

@@ -13,7 +13,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import {
-	TypographyH4,
+	TypographyH3,
 	TypographyMuted,
 	TypographySmall,
 	TypographyH2,
@@ -102,9 +102,9 @@ export function Footer() {
 
 					{/* Column 2: Top Links */}
 					<div className="lg:pl-8">
-						<TypographyH4 className="mb-4 text-foreground font-semibold">
+						<TypographyH3 className="mb-4 text-foreground font-semibold">
 							Top Links
-						</TypographyH4>
+						</TypographyH3>
 						<div className="flex flex-col items-start gap-1.5">
 							{SITE_CONFIG.navLinks.map((link) => (
 								<FooterLink key={link.label} href={link.href}>
@@ -116,9 +116,9 @@ export function Footer() {
 
 					{/* Column 3: Contact Us */}
 					<div>
-						<TypographyH4 className="mb-5 text-foreground font-semibold">
+						<TypographyH3 className="mb-5 text-foreground font-semibold">
 							Contact Us
-						</TypographyH4>
+						</TypographyH3>
 						<ul className="space-y-3 mb-3">
 							<ContactItem
 								icon={Phone}
@@ -136,9 +136,9 @@ export function Footer() {
 
 					{/* Column 4: Working Hours */}
 					<div>
-						<TypographyH4 className="mb-5 text-foreground font-semibold">
+						<TypographyH3 className="mb-5 text-foreground font-semibold">
 							Working Hours
-						</TypographyH4>
+						</TypographyH3>
 						<div className="space-y-3">
 							{SITE_CONFIG.workingHours.map((schedule) => (
 								<ScheduleRow

@@ -10,93 +10,53 @@ import { TrustStats } from "./_components/trust-stats";
 import { MeetTheTeam } from "./_components/meet-the-team";
 import { Certifications } from "./_components/certifications";
 import { OurValues } from "./_components/our-values";
+import {
+	generateOrganizationSchema,
+	generateWebPageSchema,
+} from "@/lib/json-ld";
+
+const { brand, seo } = SITE_CONFIG;
 
 export const metadata: Metadata = {
-	title: `About Us | ${SITE_CONFIG.brand.name} - Your Trusted Water City Plumbers`,
-	description:
-		"Learn about FlowMasters, Water City's trusted family-owned plumbing company since 2005. Licensed, insured, and committed to serving our community with integrity. Meet our team of expert plumbers.",
+	title: `About Us | ${brand.name} - Your Trusted ${seo.location.city} Plumbers`,
+	description: `Learn about ${brand.name}, ${seo.location.city}'s trusted family-owned plumbing company since ${seo.foundingDate.split("-")[0]}. Licensed, insured, and committed to serving our community with integrity. Meet our team of expert plumbers.`,
 	keywords: [
-		"Water City plumber",
+		`${seo.location.city} plumber`,
 		"local plumbing company",
 		"family-owned plumber",
-		"licensed plumber Water City",
+		`licensed plumber ${seo.location.city}`,
 		"plumbing services near me",
 	],
 };
 
 export default function AboutPage() {
 	const { aboutUs } = SITE_CONFIG;
+	const { siteUrl, schemaIds } = seo;
 
-	// JSON-LD Schema for LocalBusiness and Organization
+	// JSON-LD Schema using centralized generators
 	const jsonLd = {
 		"@context": "https://schema.org",
 		"@graph": [
-			{
-				"@type": ["LocalBusiness", "Plumber"],
-				"@id": "https://flowmasters.com/#organization",
-				name: SITE_CONFIG.brand.name,
-				description: SITE_CONFIG.brand.description,
-				url: "https://flowmasters.com",
-				telephone: SITE_CONFIG.contact.phone,
-				email: SITE_CONFIG.contact.email,
-				foundingDate: `${aboutUs.companyStory.foundedYear}`,
-				address: {
-					"@type": "PostalAddress",
-					streetAddress: SITE_CONFIG.contact.address,
-					addressLocality: "Water City",
-					addressRegion: "WC",
-					postalCode: "12345",
-					addressCountry: "US",
-				},
-				geo: {
-					"@type": "GeoCoordinates",
-					latitude: "40.7128",
-					longitude: "-74.0060",
-				},
-				areaServed: aboutUs.serviceAreas.map((area) => ({
-					"@type": "City",
-					name: area,
-				})),
-				openingHoursSpecification: [
-					{
-						"@type": "OpeningHoursSpecification",
-						dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-						opens: "08:00",
-						closes: "19:00",
-					},
-					{
-						"@type": "OpeningHoursSpecification",
-						dayOfWeek: "Saturday",
-						opens: "09:00",
-						closes: "18:00",
-					},
-				],
-				priceRange: "$$",
-				image: "/about-team.png",
-				sameAs: SITE_CONFIG.socials.map((s) => s.href).filter((h) => h !== "#"),
-				aggregateRating: {
-					"@type": "AggregateRating",
-					ratingValue: "4.9",
-					reviewCount: "500",
-					bestRating: "5",
-					worstRating: "1",
-				},
-				hasCredential: aboutUs.certifications.map((cert) => ({
-					"@type": "EducationalOccupationalCredential",
-					credentialCategory: cert.name,
-					description: cert.description,
-				})),
-			},
+			// WebPage schema for About page
+			generateWebPageSchema({
+				name: `About ${brand.name}`,
+				description: metadata.description as string,
+				url: `${siteUrl}/about`,
+				type: "AboutPage",
+			}),
+			// Organization schema
+			generateOrganizationSchema(),
 			// Team members as Person schema
 			...aboutUs.team.map((member) => ({
 				"@type": "Person",
 				name: member.name,
 				jobTitle: member.role,
 				description: member.bio,
-				image: member.image,
+				image: member.image.startsWith("http")
+					? member.image
+					: `${siteUrl}${member.image}`,
 				worksFor: {
-					"@type": "Organization",
-					name: SITE_CONFIG.brand.name,
+					"@id": `${siteUrl}/${schemaIds.organization}`,
 				},
 				hasCredential: member.certifications.map((cert) => ({
 					"@type": "EducationalOccupationalCredential",

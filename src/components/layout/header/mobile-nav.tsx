@@ -65,6 +65,7 @@ export function MobileNav() {
 									key={link.href + link.label}
 									href={link.href}
 									className="text-4xl font-semibold text-white hover:text-primary transition-colors py-2"
+									onClick={() => setIsOpen(false)}
 								>
 									{link.label}
 								</Link>

@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import {
 	TypographyH2,
-	TypographyH4,
+	TypographyH3,
 	TypographyMuted,
 	TypographySmall,
 } from "@/components/ui/typography";
@@ -38,9 +38,9 @@ export function LocationSection() {
 
 						<div className="space-y-6">
 							<div>
-								<TypographyH4 className="text-lg font-bold mb-2">
+								<TypographyH3 className="text-lg font-bold mb-2">
 									Address
-								</TypographyH4>
+								</TypographyH3>
 								<div className="flex items-center gap-3 text-muted-foreground">
 									<MapPin className="w-5 h-5 text-primary" />
 									<span>{SITE_CONFIG.contact.address}</span>
@@ -49,9 +49,9 @@ export function LocationSection() {
 							</div>
 
 							<div>
-								<TypographyH4 className="text-lg font-bold mb-2">
+								<TypographyH3 className="text-lg font-bold mb-2">
 									Opening Hours
-								</TypographyH4>
+								</TypographyH3>
 								<div className="flex items-start gap-3 text-muted-foreground">
 									<Clock className="w-5 h-5 text-primary shrink-0 mt-0.5" />
 									<div className="grid gap-1.5">

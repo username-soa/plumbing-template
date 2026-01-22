@@ -4,6 +4,120 @@ export const SITE_CONFIG = {
 		description:
 			"Professional plumbing services for residential and commercial properties. We are dedicated to making every space clean, efficient, and welcoming.",
 	},
+
+	// ============================================================================
+	// SEO CONFIGURATION
+	// Update these values for each business location
+	// ============================================================================
+	seo: {
+		// Site URL (no trailing slash)
+		siteUrl: "https://flowmasters.com.au",
+
+		// Core Business Identity
+		businessType: "Plumber" as const, // Schema.org type
+		priceRange: "$$",
+		foundingDate: "2005-01-01", // ISO date format (YYYY-MM-DD)
+
+		// Primary Business Location
+		location: {
+			country: "Australia",
+			countryCode: "AU",
+			state: "New South Wales",
+			stateCode: "NSW",
+			city: "Parramatta", // Primary city/suburb
+			postalCode: "2150",
+			streetAddress: "123 Main Street",
+			// Phone in international format
+			phone: "+61 2 1234 5678",
+			phoneDisplay: "(02) 1234 5678", // Display format
+		},
+
+		// Geographic Coordinates (for Google Maps integration)
+		// Get these from Google Maps: right-click on location > "What's here?"
+		coordinates: {
+			latitude: "-33.8151",
+			longitude: "151.0034",
+		},
+
+		// Service Areas - suburbs/cities you service
+		// These appear in LocalBusiness.areaServed schema
+		serviceAreas: [
+			{ name: "Parramatta", type: "Suburb" as const },
+			{ name: "Westmead", type: "Suburb" as const },
+			{ name: "Harris Park", type: "Suburb" as const },
+			{ name: "Granville", type: "Suburb" as const },
+			{ name: "Merrylands", type: "Suburb" as const },
+			{ name: "Rosehill", type: "Suburb" as const },
+			{ name: "Northmead", type: "Suburb" as const },
+			{ name: "North Parramatta", type: "Suburb" as const },
+			{ name: "Toongabbie", type: "Suburb" as const },
+			{ name: "Winston Hills", type: "Suburb" as const },
+		],
+
+		// Google Business Profile Integration
+		googleBusinessProfile: {
+			enabled: true,
+			// Get Place ID from: https://developers.google.com/maps/documentation/places/web-service/place-id
+			placeId: "", // e.g., "ChIJN1t_tDeuEmsRUsoyG83frY4"
+			// Get Maps URL from your Google Business Profile
+			mapsUrl: "", // e.g., "https://maps.google.com/?cid=12345678901234567890"
+		},
+
+		// Priority Services (slugs) - these get highlighted in schema
+		// Use service slugs from the services array below
+		priorityServices: ["emergency-service", "leak-detection", "drain-cleaning"],
+
+		// Emergency Service Configuration
+		// Set to the slug of your 24/7 emergency service for special schema markup
+		emergencyServiceSlug: "emergency-service",
+
+		// Review Configuration
+		reviews: {
+			// "hardcoded" = manual updates | "google-api" = fetch from Google (requires setup)
+			source: "hardcoded" as const,
+
+			// Aggregate rating (update periodically based on actual reviews)
+			aggregate: {
+				ratingValue: 4.9,
+				reviewCount: 500,
+				bestRating: 5,
+				worstRating: 1,
+			},
+
+			// Featured reviews for display on website
+			// Copy real reviews from Google Business Profile
+			featured: [
+				{
+					author: "Sarah M.",
+					rating: 5,
+					text: "FlowMasters fixed our burst pipe within an hour of calling. Professional, clean, and reasonably priced. Highly recommend!",
+					date: "2026-01-10",
+					platform: "Google" as const,
+				},
+				{
+					author: "Michael T.",
+					rating: 5,
+					text: "Best plumber in Parramatta! They installed our new hot water system and did an amazing job. Very knowledgeable team.",
+					date: "2026-01-05",
+					platform: "Google" as const,
+				},
+				{
+					author: "Lisa K.",
+					rating: 5,
+					text: "Called them for a blocked drain emergency. They arrived quickly and solved the problem. Fair pricing with no hidden costs.",
+					date: "2025-12-28",
+					platform: "Google" as const,
+				},
+			],
+		},
+
+		// Schema.org identifiers (usually don't need to change)
+		schemaIds: {
+			organization: "#organization",
+			website: "#website",
+		},
+	},
+
 	socials: [
 		{
 			platform: "facebook",
@@ -265,6 +379,9 @@ export const SITE_CONFIG = {
 			longDescription:
 				"Plumbing disasters don't wait for business hours. Our emergency response team visits your property 24/7 to handle burst pipes, overflowing toilets, and major leaks. We arrive fully stocked to stop the damage immediately.",
 			icon: "Siren",
+			// SEO: Emergency service flags for special schema markup
+			isEmergency: true,
+			availability: "24/7",
 			metaTitle: "24/7 Emergency Plumber | FlowMasters",
 			metaDescription:
 				"Rapid response emergency plumbing services available 24/7. Burst pipes, sewer backups, and major leaks handled immediately by expert plumbers.",

@@ -34,7 +34,7 @@ export function ServiceHero({
 							Professional Plumbing Services
 						</Badge>
 						<TypographyH1 className="mb-6">{title}</TypographyH1>
-						<TypographyLead className="text-muted-foreground/90 text-xl">
+						<TypographyLead className="text-muted-foreground text-xl">
 							{description}
 						</TypographyLead>
 					</div>

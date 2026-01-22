@@ -54,9 +54,9 @@ export function ServicesHeroMain() {
 								<factor.icon className="md:size-5 size-3" />
 							</div>
 							<div>
-								<h3 className="font-bold text-sm mb-1 text-white">
+								<p className="font-bold text-sm mb-1 text-white">
 									{factor.title}
-								</h3>
+								</p>
 								<p className="text-xs text-white/70 line-clamp-2">
 									{factor.description}
 								</p>

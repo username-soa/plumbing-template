@@ -2,7 +2,7 @@
 
 import { Fragment } from "react";
 import { Shield, Award, Clock, Users } from "lucide-react";
-import { TypographyH2, TypographyH4 } from "@/components/ui/typography";
+import { TypographyH2, TypographyH3 } from "@/components/ui/typography";
 import { cn } from "@/lib/utils";
 
 interface Stat {
@@ -91,9 +91,9 @@ export function WhyChooseUs({ stats }: WhyChooseUsProps) {
 								<span className="text-5xl font-bold tracking-tighter text-foreground">
 									{stat.value}
 								</span>
-								<TypographyH4 className="font-bold text-lg">
+								<TypographyH3 className="font-bold text-lg">
 									{stat.label}
-								</TypographyH4>
+								</TypographyH3>
 							</div>
 							{index < displayStats.length - 1 && (
 								<div className="md:w-px w-full md:h-full h-px bg-border my-4 md:my-0" />

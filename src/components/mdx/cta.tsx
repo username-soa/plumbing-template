@@ -31,7 +31,7 @@ export function CTA({
 			<div className="space-y-2 text-center md:text-left">
 				<h3 className="text-2xl font-bold">{title}</h3>
 				{description && (
-					<p className="text-primary-foreground/80">{description}</p>
+					<p className="text-primary-foreground">{description}</p>
 				)}
 			</div>
 			<Link

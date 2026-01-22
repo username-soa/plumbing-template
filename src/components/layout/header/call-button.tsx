@@ -1,5 +1,8 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { SITE_CONFIG } from "@/lib/site-config";
+import { Phone } from "lucide-react";
 
 interface CallButtonProps {
 	/** Full width button for mobile menu */
@@ -15,7 +18,8 @@ export function CallButton({ fullWidth = false }: CallButtonProps) {
 				className="w-full rounded-full bg-primary text-primary-foreground hover:opacity-90 font-bold py-6 text-lg cursor-pointer"
 			>
 				<a href={`tel:${SITE_CONFIG.contact.phone}`}>
-					Call Now {SITE_CONFIG.contact.phone}
+					<Phone className="w-5 h-5 mr-2 ring-animation" fill="currentColor" />
+					{SITE_CONFIG.contact.phone}
 				</a>
 			</Button>
 		);
@@ -29,7 +33,7 @@ export function CallButton({ fullWidth = false }: CallButtonProps) {
 				className="rounded-full bg-primary text-primary-foreground hover:opacity-90 font-bold py-6 cursor-pointer"
 			>
 				<a href={`tel:${SITE_CONFIG.contact.phone}`}>
-					<span className="xl:flex hidden">Call Now</span>{" "}
+					<Phone className="w-5 h-5 mr-2 ring-animation" fill="currentColor" />
 					{SITE_CONFIG.contact.phone}
 				</a>
 			</Button>

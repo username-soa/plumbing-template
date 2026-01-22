@@ -102,9 +102,9 @@ export function ServiceDetails({
 													</div>
 												</div>
 												<div>
-													<h4 className="font-semibold text-foreground flex items-center gap-2">
+													<h3 className="font-semibold text-foreground flex items-center gap-2">
 														{step.title}
-													</h4>
+													</h3>
 													<p className="text-sm text-muted-foreground mt-1">
 														{step.description}
 													</p>
@@ -125,6 +125,7 @@ export function ServiceDetails({
 									src={image}
 									alt={`${title} service`}
 									fill
+									priority
 									sizes="(max-width: 1024px) 80vw, 40vw"
 									className="object-cover hover:scale-105 transition-transform duration-700"
 								/>

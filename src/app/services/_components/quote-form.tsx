@@ -54,7 +54,7 @@ export function QuoteFormCTA({ serviceName }: QuoteFormCTAProps) {
 							<h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
 								Get Your Free {serviceName} Quote Today
 							</h2>
-							<p className="text-primary-foreground/80 text-lg mt-4 max-w-lg">
+							<p className="text-primary-foreground text-lg mt-4 max-w-lg">
 								Fill out the form and one of our experts will contact you within
 								30 minutes during business hours with a detailed estimate.
 							</p>
@@ -70,7 +70,7 @@ export function QuoteFormCTA({ serviceName }: QuoteFormCTAProps) {
 									<Phone className="w-5 h-5" />
 								</div>
 								<div>
-									<div className="text-sm text-primary-foreground/70">
+									<div className="text-sm text-primary-foreground">
 										Call Us Now
 									</div>
 									<div className="font-semibold">
@@ -86,7 +86,7 @@ export function QuoteFormCTA({ serviceName }: QuoteFormCTAProps) {
 									<Mail className="w-5 h-5" />
 								</div>
 								<div>
-									<div className="text-sm text-primary-foreground/70">
+									<div className="text-sm text-primary-foreground">
 										Email Us
 									</div>
 									<div className="font-semibold">
@@ -99,7 +99,7 @@ export function QuoteFormCTA({ serviceName }: QuoteFormCTAProps) {
 									<MapPin className="w-5 h-5" />
 								</div>
 								<div>
-									<div className="text-sm text-primary-foreground/70">
+									<div className="text-sm text-primary-foreground">
 										Service Area
 									</div>
 									<div className="font-semibold">

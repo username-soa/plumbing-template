@@ -28,7 +28,7 @@ export function Timeline({ steps, className }: TimelineProps) {
 						<span className="text-sm font-medium text-muted-foreground uppercase tracking-wider">
 							{step.date || `Phase ${index + 1}`}
 						</span>
-						<h4 className="text-lg font-bold text-foreground">{step.title}</h4>
+						<p className="text-lg font-bold text-foreground">{step.title}</p>
 						<p className="text-muted-foreground leading-relaxed">
 							{step.description}
 						</p>

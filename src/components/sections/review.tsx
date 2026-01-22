@@ -69,7 +69,7 @@ export async function ReviewSection() {
 									))}
 								</div>
 							</div>
-							<div className="text-[10px] uppercase font-bold tracking-widest text-muted-foreground/80 lg:flex hidden">
+							<div className="text-[10px] uppercase font-bold tracking-widest text-muted-foreground lg:flex hidden">
 								Based on {TOTAL_REVIEWS} reviews
 							</div>
 						</div>

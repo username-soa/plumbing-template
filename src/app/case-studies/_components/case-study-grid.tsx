@@ -18,7 +18,7 @@ export function CaseStudyGrid() {
 		<section className="py-16 md:py-24 bg-muted/30">
 			<div className="container mx-auto px-6">
 				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-					{caseStudies.map((study) => (
+					{caseStudies.map((study, index) => (
 						<Link
 							key={study.slug}
 							href={`/case-studies/${study.slug}`}
@@ -33,6 +33,7 @@ export function CaseStudyGrid() {
 											fill
 											sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
 											className="object-cover transition-transform duration-500 group-hover:scale-105"
+											priority={index === 0}
 										/>
 									) : (
 										<div className="w-full h-full flex items-center justify-center bg-primary/10 text-primary">
@@ -50,9 +51,9 @@ export function CaseStudyGrid() {
 								</div>
 
 								<CardHeader className="space-y-2">
-									<h3 className="text-xl font-bold group-hover:text-primary transition-colors line-clamp-2">
+									<h2 className="text-xl font-bold group-hover:text-primary transition-colors line-clamp-2">
 										{study.frontmatter.title}
-									</h3>
+									</h2>
 									<div className="flex items-center text-sm text-muted-foreground gap-1">
 										<MapPin className="w-4 h-4" />
 										<span>{study.frontmatter.location}</span>
@@ -68,7 +69,7 @@ export function CaseStudyGrid() {
 								<CardFooter className="pt-0">
 									<Button
 										variant="link"
-										className="p-0 h-auto font-semibold text-primary group-hover:text-primary/80"
+										className="p-0! h-auto font-semibold text-primary group-hover:text-primary/80"
 									>
 										Read Case Study{" "}
 										<ArrowRight className="w-4 h-4 transition-transform -rotate-45 group-hover:rotate-0" />

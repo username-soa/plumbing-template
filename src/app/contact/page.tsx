@@ -5,47 +5,80 @@ import { FAQSection } from "@/components/sections/faq";
 import { ContactHero } from "./_components/contact-hero";
 import { ContactForm } from "./_components/contact-form";
 import { ContactInfo } from "./_components/contact-info";
+import {
+	TypographyH2,
+	TypographyH3,
+	TypographyP,
+} from "@/components/ui/typography";
+import {
+	generateOrganizationSchema,
+	generateWebPageSchema,
+} from "@/lib/json-ld";
+
+const { brand, seo } = SITE_CONFIG;
+const foundingYear = seo.foundingDate.split("-")[0];
+const yearsInBusiness = new Date().getFullYear() - parseInt(foundingYear, 10);
 
 export const metadata: Metadata = {
-	title: "Contact Us | FlowMasters Plumbing",
-	description:
-		"Get in touch with FlowMasters for all your plumbing needs. 24/7 emergency service available. Call us or fill out our contact form for a free quote.",
+	title: `Contact Us | ${brand.name} Plumbing - ${seo.location.city}`,
+	description: `Get in touch with ${brand.name} for all your plumbing needs in ${seo.location.city}. 24/7 emergency service available. Call us or fill out our contact form for a free quote.`,
 };
 
 export default function ContactPage() {
+	const { siteUrl } = seo;
+
+	// JSON-LD Schema using centralized generators
 	const jsonLd = {
 		"@context": "https://schema.org",
-		"@type": "LocalBusiness",
-		name: SITE_CONFIG.brand.name,
-		description: SITE_CONFIG.brand.description,
-		telephone: SITE_CONFIG.contact.phone,
-		email: SITE_CONFIG.contact.email,
-		address: {
-			"@type": "PostalAddress",
-			streetAddress: SITE_CONFIG.contact.address,
-			addressLocality: "Water City",
-			addressRegion: "WC",
-			postalCode: "12345",
-			addressCountry: "US",
-		},
-		openingHoursSpecification: [
+		"@graph": [
+			// ContactPage schema
+			generateWebPageSchema({
+				name: `Contact ${brand.name}`,
+				description: metadata.description as string,
+				url: `${siteUrl}/contact`,
+				type: "ContactPage",
+			}),
+			// Organization schema with contact points
 			{
-				"@type": "OpeningHoursSpecification",
-				dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-				opens: "08:00",
-				closes: "19:00",
-			},
-			{
-				"@type": "OpeningHoursSpecification",
-				dayOfWeek: "Saturday",
-				opens: "09:00",
-				closes: "18:00",
+				...generateOrganizationSchema(),
+				contactPoint: [
+					{
+						"@type": "ContactPoint",
+						telephone: seo.location.phone,
+						contactType: "customer service",
+						areaServed: seo.location.countryCode,
+						availableLanguage: ["English"],
+					},
+					{
+						"@type": "ContactPoint",
+						telephone: seo.location.phone,
+						contactType: "emergency",
+						areaServed: seo.location.countryCode,
+						availableLanguage: ["English"],
+						hoursAvailable: {
+							"@type": "OpeningHoursSpecification",
+							dayOfWeek: [
+								"Monday",
+								"Tuesday",
+								"Wednesday",
+								"Thursday",
+								"Friday",
+								"Saturday",
+								"Sunday",
+							],
+							opens: "00:00",
+							closes: "23:59",
+						},
+					},
+				],
 			},
 		],
-		priceRange: "$$",
-		image: "/images/services-hero.png",
-		sameAs: SITE_CONFIG.socials.map((s) => s.href).filter((h) => h !== "#"),
 	};
+
+	// Generate service areas string from config
+	const serviceAreasString = seo.serviceAreas
+		.map((area) => area.name)
+		.join(" • ");
 
 	return (
 		<>
@@ -64,36 +97,40 @@ export default function ContactPage() {
 								<span className="inline-block text-sm font-semibold text-primary uppercase tracking-wider">
 									Your Trusted Local Plumbers
 								</span>
-								<h2 className="text-3xl md:text-4xl font-bold leading-tight">
-									Professional Plumbing Services in Water City & Surrounding
-									Areas
-								</h2>
-								<p className="text-lg text-muted-foreground leading-relaxed">
-									Looking for a reliable plumber near you? FlowMasters has been
-									proudly serving Water City and the greater metropolitan area
-									for over 20 years. Our licensed and insured plumbers are
-									available 24/7 for all your residential and commercial
-									plumbing needs.
-								</p>
+								<TypographyH2 className="text-3xl md:text-4xl font-bold leading-tight border-none">
+									Professional Plumbing Services in {seo.location.city} &
+									Surrounding Areas
+								</TypographyH2>
+								<TypographyP className="text-lg text-muted-foreground leading-relaxed mt-4">
+									Looking for a reliable plumber near you? {brand.name} has been
+									proudly serving {seo.location.city} and the greater{" "}
+									{seo.location.state} area for over {yearsInBusiness} years.
+									Our licensed and insured plumbers are available 24/7 for all
+									your residential and commercial plumbing needs.
+								</TypographyP>
 							</div>
 
 							{/* Service Areas */}
 							<div className="space-y-3">
-								<h3 className="text-lg font-semibold">
+								<TypographyH3 className="text-lg font-semibold">
 									Service Areas We Cover
-								</h3>
-								<p className="text-muted-foreground">
-									Water City • Downtown District • Riverside Heights • North
-									Valley • Oakwood Estates • Sunset Park • Harbor View •
-									Industrial Zone • Lakeside Community • West End
-								</p>
+								</TypographyH3>
+								<TypographyP className="text-muted-foreground mt-0">
+									{serviceAreasString}
+								</TypographyP>
 							</div>
 
 							{/* Trust Signals */}
 							<div className="grid grid-cols-2 gap-4">
 								{[
-									{ value: "20+", label: "Years of Experience" },
-									{ value: "5,000+", label: "Happy Customers" },
+									{
+										value: `${yearsInBusiness}+`,
+										label: "Years of Experience",
+									},
+									{
+										value: `${seo.reviews.aggregate.reviewCount.toLocaleString()}+`,
+										label: "Happy Customers",
+									},
 									{ value: "24/7", label: "Emergency Service" },
 									{ value: "100%", label: "Satisfaction Guaranteed" },
 								].map((stat) => (
@@ -113,9 +150,9 @@ export default function ContactPage() {
 
 							{/* Why Choose Us */}
 							<div className="space-y-4">
-								<h3 className="text-lg font-semibold">
-									Why Water City Residents Choose FlowMasters
-								</h3>
+								<TypographyH3 className="text-lg font-semibold">
+									Why {seo.location.city} Residents Choose {brand.name}
+								</TypographyH3>
 								<ul className="space-y-3">
 									{[
 										"Licensed, bonded & insured plumbing professionals",

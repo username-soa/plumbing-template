@@ -27,9 +27,9 @@ export function ReviewCard({ review, className }: ReviewCardProps) {
 							/>
 						</div>
 						<div className="flex-1">
-							<h4 className="font-bold text-sm uppercase tracking-wide text-foreground">
+							<span className="font-bold text-sm uppercase tracking-wide text-foreground">
 								{review.authorName}
-							</h4>
+							</span>
 							<div className="flex items-center justify-between w-full mt-1">
 								<span className="text-xs text-muted-foreground">
 									{review.relativeTime}

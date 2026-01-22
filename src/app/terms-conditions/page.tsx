@@ -4,6 +4,7 @@ import { SITE_CONFIG } from "@/lib/site-config";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { TypographyH1, TypographyP } from "@/components/ui/typography";
 import { FileText, Mail, Phone, MapPin, AlertTriangle } from "lucide-react";
 import Link from "next/link";
 
@@ -21,15 +22,15 @@ export default function TermsConditionsPage() {
 							<FileText className="w-4 h-4" />
 							Legal Document
 						</Badge>
-						<h1 className="text-4xl md:text-5xl font-bold mb-4">
+						<TypographyH1 className="text-4xl md:text-5xl font-bold mb-4">
 							Terms & Conditions
-						</h1>
-						<p className="text-lg text-muted-foreground">
+						</TypographyH1>
+						<TypographyP className="text-lg text-muted-foreground mt-0">
 							Terms of service for {brand.name} plumbing services
-						</p>
-						<p className="text-sm text-muted-foreground mt-4">
+						</TypographyP>
+						<TypographyP className="text-sm text-muted-foreground mt-4">
 							Last updated: {legal.lastUpdated}
-						</p>
+						</TypographyP>
 					</div>
 				</div>
 			</section>

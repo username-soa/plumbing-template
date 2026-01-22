@@ -1,11 +1,25 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { cn } from "@/lib/utils";
 import { useScrollVisibility } from "@/hooks/use-scroll-visibility";
 import { Logo } from "./logo";
 import { DesktopNav } from "./desktop-nav";
-import { MobileNav } from "./mobile-nav";
 import { CallButton } from "./call-button";
+
+// Dynamically import MobileNav to defer loading the motion library
+// The mobile nav uses motion/react for menu icon animations
+const MobileNav = dynamic(
+	() => import("./mobile-nav").then((mod) => mod.MobileNav),
+	{
+		ssr: false,
+		loading: () => (
+			<div className="lg:hidden">
+				<div className="w-[48px] h-[48px] rounded-full bg-primary animate-pulse" />
+			</div>
+		),
+	},
+);
 
 const HEADER_Z_INDEX = 60;
 const TRANSITION_DURATION = 300;

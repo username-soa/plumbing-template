@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import { TypographyH1 } from "@/components/ui/typography";
 import { SITE_CONFIG } from "@/lib/site-config";
 import { Phone } from "lucide-react";
 
@@ -26,10 +27,10 @@ export function HeroSection() {
 
 					{/* Left Text */}
 					<div className="flex flex-col items-start justify-start md:gap-y-10 gap-y-8 max-md:h-fit">
-						<h1 className="xl:text-[4vw] md:text-[5.5vw] text-[8.5vw] font-semibold text-white md:leading-[1.1] leading-[1.2] drop-shadow-lg max-w-[900px]">
+						<TypographyH1 className="xl:text-[4vw] md:text-[5.5vw] text-[8.5vw] font-semibold text-white md:leading-[1.1] leading-[1.2] drop-shadow-lg max-w-[900px]">
 							Reliable <span className="text-primary">Plumbing Solutions</span>{" "}
-							for Homes & Businesses
-						</h1>
+							in Water City
+						</TypographyH1>
 
 						<Button
 							size="lg"
@@ -38,7 +39,7 @@ export function HeroSection() {
 						>
 							<span className="md:inline hidden">Schedule Your Visit</span>
 							<span className="md:hidden flex items-center gap-2">
-								<Phone className="w-5 h-5 fill-current" />
+								<Phone className="w-5 h-5 fill-current ring-animation" />
 								{SITE_CONFIG.contact.phone}
 							</span>
 						</Button>

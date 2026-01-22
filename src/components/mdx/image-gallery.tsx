@@ -52,7 +52,11 @@ export function ImageGallery({
 							<div className="relative aspect-video rounded-lg overflow-hidden border border-border">
 								<Dialog>
 									<DialogTrigger asChild>
-										<div className="cursor-zoom-in relative w-full h-full group">
+										<button
+											type="button"
+											className="cursor-zoom-in relative w-full h-full group"
+											aria-label={`View ${img.alt || img.caption || `gallery image ${index + 1}`} in fullscreen`}
+										>
 											<Image
 												src={img.src}
 												alt={
@@ -62,7 +66,7 @@ export function ImageGallery({
 												sizes="(max-width: 768px) 50vw, 33vw"
 												className="object-cover transition-transform group-hover:scale-105"
 											/>
-										</div>
+										</button>
 									</DialogTrigger>
 									<DialogContent
 										className="fixed! inset-0! w-screen! h-screen! max-w-none! max-h-none! translate-x-0! translate-y-0! top-0! left-0! p-0 overflow-hidden bg-black border-none shadow-none rounded-none! flex flex-col items-center justify-center z-9999"
@@ -138,7 +142,11 @@ export function ImageGallery({
 				<div key={`${index}-${img.src}`} className="space-y-2">
 					<Dialog>
 						<DialogTrigger asChild>
-							<div className="relative aspect-video rounded-lg overflow-hidden border border-border cursor-zoom-in group">
+							<button
+								type="button"
+								className="relative aspect-video rounded-lg overflow-hidden border border-border cursor-zoom-in group w-full"
+								aria-label={`View ${img.alt || img.caption || `gallery image ${index + 1}`} in fullscreen`}
+							>
 								<Image
 									src={img.src}
 									alt={img.alt || img.caption || `Gallery image ${index + 1}`}
@@ -146,7 +154,7 @@ export function ImageGallery({
 									sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
 									className="object-cover transition-transform group-hover:scale-105"
 								/>
-							</div>
+							</button>
 						</DialogTrigger>
 						<DialogContent
 							className="fixed! inset-0! w-screen! h-screen! max-w-none! max-h-none! translate-x-0! translate-y-0! top-0! left-0! p-0 overflow-hidden bg-black border-none shadow-none rounded-none! flex flex-col items-center justify-center z-9999"

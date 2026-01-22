@@ -12,6 +12,13 @@ import { ServiceFAQ } from "../_components/service-faq";
 import { RelatedServices } from "../_components/related-services";
 import { ReviewSection } from "@/components/sections/review";
 import { JsonLd } from "@/components/json-ld";
+import {
+	generateServiceSchema,
+	generateServiceBreadcrumbs,
+	generateServiceFAQSchema,
+} from "@/lib/json-ld";
+
+const { brand, seo } = SITE_CONFIG;
 
 interface ServicePageProps {
 	params: Promise<{
@@ -33,6 +40,8 @@ interface ExtendedService {
 	subServices?: { title: string; description: string; icon: string }[];
 	stats?: { value: string; label: string }[];
 	process?: { title: string; description: string; icon: string }[];
+	isEmergency?: boolean;
+	availability?: string;
 }
 
 // 1. Generate Static Params for all services
@@ -42,7 +51,7 @@ export async function generateStaticParams() {
 	}));
 }
 
-// 2. Generate Metadata for SEO
+// 2. Generate Metadata for SEO with dynamic location
 export async function generateMetadata({
 	params,
 }: ServicePageProps): Promise<Metadata> {
@@ -55,9 +64,18 @@ export async function generateMetadata({
 		};
 	}
 
+	// Inject location into meta title/description
+	const locationTitle = `${service.title} in ${seo.location.city}`;
+
 	return {
-		title: service.metaTitle || `${service.title} | FlowMasters`,
-		description: service.metaDescription || service.description,
+		title:
+			service.metaTitle?.replace(
+				brand.name,
+				`${brand.name} ${seo.location.city}`,
+			) || `${locationTitle} | ${brand.name}`,
+		description:
+			service.metaDescription ||
+			`Professional ${service.title.toLowerCase()} services in ${seo.location.city}, ${seo.location.state}. ${service.description}`,
 	};
 }
 
@@ -77,28 +95,23 @@ export default async function ServicePage({ params }: ServicePageProps) {
 		(Icons as unknown as Record<string, typeof Icons.Wrench>)[service.icon] ||
 		Icons.Wrench;
 
+	// JSON-LD Schema using centralized generators
+	const serviceSchema = generateServiceSchema(
+		service as Parameters<typeof generateServiceSchema>[0],
+	);
+
 	const jsonLd = {
 		"@context": "https://schema.org",
-		"@type": "Service",
-		serviceType: service.title,
-		provider: {
-			"@type": "LocalBusiness",
-			name: SITE_CONFIG.brand.name,
-			telephone: SITE_CONFIG.contact.phone,
-			address: {
-				"@type": "PostalAddress",
-				streetAddress: SITE_CONFIG.contact.address,
-				addressLocality: "Water City",
-				addressRegion: "WC",
-				postalCode: "12345",
-				addressCountry: "US",
-			},
-		},
-		description: service.longDescription || service.description,
-		areaServed: {
-			"@type": "City",
-			name: "Water City",
-		},
+		"@graph": [
+			// Breadcrumb schema
+			generateServiceBreadcrumbs(service.title),
+			// Service schema
+			serviceSchema,
+			// FAQ schema (if service has FAQs)
+			...(service.faqs && service.faqs.length > 0
+				? [generateServiceFAQSchema(service.faqs)]
+				: []),
+		],
 	};
 
 	return (
