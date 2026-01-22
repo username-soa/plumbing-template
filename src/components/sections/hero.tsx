@@ -10,7 +10,7 @@ export function HeroSection() {
 			{/* Background Image */}
 			<div className="absolute inset-0 w-full h-full z-0">
 				<Image
-					src="/images/hero1.jpeg"
+					src="/images/hero/hero1.jpeg"
 					alt="Professional Plumbing"
 					fill
 					sizes="100vw"
@@ -58,7 +58,7 @@ export function HeroSection() {
 								sizes="(max-width: 768px) 100vw, 200px"
 								alt="Smiling Plumber"
 								className="object-cover"
-								src="/images/hero-portrait.jpeg"
+								src="/images/hero/hero-portrait.jpeg"
 							/>
 						</div>
 					</div>

@@ -204,7 +204,7 @@ export function generateOrganizationSchema() {
 			width: 512,
 			height: 512,
 		},
-		image: `${siteUrl}/about-team.png`,
+		image: `${siteUrl}/images/about/about-team.png`,
 		address: generateAddress(),
 		geo: generateGeoCoordinates(),
 		areaServed: generateAreaServed(),

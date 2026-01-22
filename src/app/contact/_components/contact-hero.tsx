@@ -11,7 +11,7 @@ export function ContactHero() {
 			{/* Background Image */}
 			<div className="absolute inset-0 z-0">
 				<Image
-					src="/images/contact-hero.jpeg"
+					src="/images/hero/contact-hero.jpeg"
 					alt="Professional Plumber Ready to Help"
 					fill
 					className="object-cover"

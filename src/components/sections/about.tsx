@@ -47,15 +47,15 @@ const STATS = [
 const CARDS = [
 	{
 		title: "Built on Trust, Powered by Service",
-		image: "/about-trust.png",
+		image: "/images/about/about-trust.png",
 	},
 	{
 		title: "Making Efficient Flow Our Promise",
-		image: "/about-team.png",
+		image: "/images/about/about-team.png",
 	},
 	{
 		title: "Your Trusted Plumbing Experts",
-		image: "/about-expert.png",
+		image: "/images/about/about-expert.png",
 	},
 ];
 

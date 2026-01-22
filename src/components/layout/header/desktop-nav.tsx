@@ -24,8 +24,8 @@ export function DesktopNav() {
 							key={link.href + link.label}
 							href={link.href}
 							className={cn(
-								"relative px-4 py-1.5 rounded-full transition-colors",
-								isActive ? "text-white" : "text-white/80 hover:text-white",
+								"relative px-4 py-1.5 rounded-full transition-colors [text-shadow:2px_2px_4px_rgba(0,0,0,0.4)]",
+								isActive ? "text-white/80" : "text-white hover:text-white/80",
 							)}
 						>
 							{isActive && (

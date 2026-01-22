@@ -788,7 +788,7 @@ export const SITE_CONFIG = {
 			title: "Schedule",
 			description: "Book online or call us. We offer same-day appointments.",
 			icon: "Calendar",
-			image: "/about-expert.png",
+			image: "/images/about/about-expert.png",
 			label: "BOOKING + CONTACT",
 		},
 		{
@@ -796,7 +796,7 @@ export const SITE_CONFIG = {
 			description:
 				"Our expert arrives, inspects the issue, and gives a clear quote.",
 			icon: "Search",
-			image: "/about-trust.png",
+			image: "/images/about/about-trust.png",
 			label: "INSPECTION + QUOTE",
 		},
 		{
@@ -804,7 +804,7 @@ export const SITE_CONFIG = {
 			description:
 				"We fix it right the first time and clean up after ourselves.",
 			icon: "Wrench",
-			image: "/about-team.png",
+			image: "/images/about/about-team.png",
 			label: "EXECUTION + REPAIR",
 		},
 	],
@@ -856,7 +856,7 @@ As a locally-owned business, we understand the unique plumbing challenges our Wa
 					"Master Plumber License #MP-12345",
 					"Backflow Prevention Certified",
 				],
-				image: "/avatar-mark.png",
+				image: "/images/team/avatar-mark.jpg",
 			},
 			{
 				name: "Sarah Chen",
@@ -866,7 +866,7 @@ As a locally-owned business, we understand the unique plumbing challenges our Wa
 					"OSHA Safety Certified",
 					"Customer Service Excellence",
 				],
-				image: "/avatar-kathryn.png",
+				image: "/images/team/avatar-kathryn.jpg",
 			},
 			{
 				name: "Marcus Thompson",
@@ -876,7 +876,7 @@ As a locally-owned business, we understand the unique plumbing challenges our Wa
 					"Journeyman Plumber License #JP-67890",
 					"Gas Line Certified",
 				],
-				image: "/avatar-jerome.png",
+				image: "/images/team/avatar-jerome.jpg",
 			},
 		],
 		trustStats: [

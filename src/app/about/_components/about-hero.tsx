@@ -9,7 +9,7 @@ export function AboutHero() {
 			{/* Background Image */}
 			<div className="absolute inset-0 z-0">
 				<Image
-					src="/about-team.png"
+					src="/images/about/about-team.png"
 					alt={`${SITE_CONFIG.brand.name} - Professional Plumbing Team in Water City`}
 					fill
 					className="object-cover"

@@ -100,7 +100,7 @@ export function LocationSection() {
 							className="block w-full h-full"
 						>
 							<Image
-								src="/map-styled.png"
+								src="/images/map/map-styled.png"
 								alt="Office Location Map"
 								fill
 								sizes="(max-width: 1024px) 100vw, 50vw"

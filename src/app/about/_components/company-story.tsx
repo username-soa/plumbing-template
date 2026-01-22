@@ -37,7 +37,7 @@ export function CompanyStory() {
 					{/* Right - Image */}
 					<div className="relative aspect-4/3 rounded-2xl overflow-hidden">
 						<Image
-							src="/about-trust.png"
+							src="/images/about/about-trust.png"
 							alt={`${SITE_CONFIG.brand.name} team serving Water City community`}
 							fill
 							className="object-cover"
