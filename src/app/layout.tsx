@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Poppins, Bebas_Neue } from "next/font/google";
 import "./globals.css";
 import { LayoutBody } from "@/components/layout/layout-body";
+import { Toaster } from "@/components/ui/sonner";
 
 const geistSans = Geist({
 	variable: "--font-geist-sans",
@@ -41,6 +42,7 @@ export default function RootLayout({
 				className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable} ${bebas.variable} antialiased min-h-screen flex flex-col`}
 			>
 				<LayoutBody>{children}</LayoutBody>
+				<Toaster />
 			</body>
 		</html>
 	);

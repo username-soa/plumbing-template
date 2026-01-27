@@ -6,6 +6,9 @@ const nextConfig: NextConfig = {
 	pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
 	experimental: {
 		inlineCss: true,
+		serverActions: {
+			bodySizeLimit: "10mb",
+		},
 	},
 };
 

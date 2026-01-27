@@ -5,6 +5,17 @@ export const SITE_CONFIG = {
 			"Professional plumbing services for residential and commercial properties. We are dedicated to making every space clean, efficient, and welcoming.",
 	},
 
+	// Email Configuration
+	email: {
+		// 'mailto' | 'nodemailer'
+		provider: "nodemailer" as "mailto" | "nodemailer",
+		// Email to receive inquiries (used for both modes)
+		to: "info@flowmasters.com",
+		// SMTP Configuration (only used if provider is 'nodemailer')
+		// For privacy, these should really be pulled from env vars in the server action,
+		// but this config communicates "User Preference".
+	},
+
 	// ============================================================================
 	// SEO CONFIGURATION
 	// Update these values for each business location
